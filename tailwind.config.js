@@ -17,6 +17,13 @@ module.exports = {
   		}
   	},
   	extend: {
+  		fontFamily: {
+  			inter: ["Inter", "sans-serif"],
+  			nunito: ["Nunito", "sans-serif"],
+  			poppins: ["Poppins", "sans-serif"],
+  			lato: ["Lato", "sans-serif"],
+  			"plus-jakarta": ["Plus Jakarta Sans", "sans-serif"],
+  		},
   		colors: {
   			border: 'hsl(var(--border))',
   			input: 'hsl(var(--input))',

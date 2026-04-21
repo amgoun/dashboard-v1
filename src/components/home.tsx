@@ -1,8 +1,8 @@
+import React from "react";
+import Dashboard from "./Dashboard";
+
 function Home() {
-  return (
-    <div className="w-screen h-screen">
-    </div>
-  )
+  return <Dashboard />;
 }
 
-export default Home
+export default Home;
