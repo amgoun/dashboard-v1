@@ -5,7 +5,7 @@ import CardPaymentForm from "./CardPaymentForm";
 import TimeRangeDropdown from "./TimeRangeDropdown";
 
 const CardPanel: React.FC = () => (
-  <div className="w-full h-full bg-surface-alt rounded-lg p-7 shadow-card flex flex-col gap-5">
+  <div className="w-full h-full bg-surface-alt rounded-lg p-7 shadow-panel flex flex-col gap-5">
     <div className="flex items-center justify-between">
       <h2 className="text-ink-secondary text-base font-normal font-inter">My Card</h2>
       <TimeRangeDropdown

@@ -5,6 +5,7 @@ import ExpensesGauge from "./ExpensesGauge";
 import FinanceChart from "./FinanceChart";
 import TransactionsTable from "./TransactionsTable";
 import CardPanel from "./CardPanel";
+import { SectionHeader } from "./shared";
 import TimeRangeDropdown from "./TimeRangeDropdown";
 import OrdersPage from "./pages/OrdersPage";
 import SchedulesPage from "./pages/SchedulesPage";
@@ -63,20 +64,14 @@ const Dashboard: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 px-4 sm:px-8 pb-8 flex-1">
 
             {/* My Expenses — col 1, row 1 */}
-            <div className="bg-surface-card rounded-card p-6 shadow-card">
-              <div className="flex items-center justify-between mb-4">
-                <h2 className="text-ink-secondary text-lg font-normal font-inter">My Expenses</h2>
-                <TimeRangeDropdown />
-              </div>
+            <div className="bg-surface-card rounded-card p-6 shadow-panel">
+              <SectionHeader title="My Expenses" right={<TimeRangeDropdown />} className="mb-4 text-lg" />
               <ExpensesGauge />
             </div>
 
             {/* My Finance — col 2, row 1 */}
-            <div className="bg-surface-alt rounded-card p-6 shadow-card">
-              <div className="flex items-center justify-between mb-4">
-                <h2 className="text-ink-secondary text-lg font-normal font-inter">My Finance</h2>
-                <TimeRangeDropdown />
-              </div>
+            <div className="bg-surface-alt rounded-card p-6 shadow-panel">
+              <SectionHeader title="My Finance" right={<TimeRangeDropdown />} className="mb-4 text-lg" />
               <FinanceChart />
             </div>
 

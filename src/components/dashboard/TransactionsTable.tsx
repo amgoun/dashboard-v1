@@ -22,7 +22,7 @@ const TransactionsTable: React.FC<TransactionsTableProps> = ({ searchQuery = "" 
     : transactions;
 
   return (
-    <div className="w-full h-full bg-surface-alt rounded-lg p-4 shadow-card overflow-auto">
+    <div className="w-full h-full bg-surface-alt rounded-lg p-4 shadow-panel overflow-auto">
       <div className="flex items-center justify-between mb-4 gap-2 flex-wrap">
         <h2 className="text-ink-secondary text-base font-normal font-inter">My Transaction</h2>
         <div className="flex items-center gap-3">

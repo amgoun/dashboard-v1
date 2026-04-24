@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { PageWrapper, PageHeader, FilterTabs } from "../shared";
 
 type SettingsTab = "Profile" | "Account" | "Notifications" | "Security" | "Appearance";
 
@@ -37,7 +38,7 @@ const Field: React.FC<{ label: string; value: string; type?: string; readOnly?: 
 };
 
 const Section: React.FC<{ title: string; children: React.ReactNode }> = ({ title, children }) => (
-  <div className="bg-surface-card rounded-card p-5 shadow-card">
+  <div className="bg-surface-card rounded-card p-5 shadow-panel">
     <h3 className="text-white text-[13px] font-inter font-semibold mb-4">{title}</h3>
     {children}
   </div>
@@ -68,29 +69,15 @@ const SettingsPage: React.FC = () => {
   const tabs: SettingsTab[] = ["Profile", "Account", "Notifications", "Security", "Appearance"];
 
   return (
-    <div className="px-4 sm:px-8 pb-8 space-y-5">
-      {/* Header */}
-      <div>
-        <h1 className="text-white text-xl font-semibold font-inter">Settings</h1>
-        <p className="text-ink-secondary text-[12.8px] font-inter mt-0.5">Manage your account and preferences</p>
-      </div>
+    <PageWrapper>
+      <PageHeader title="Settings" subtitle="Manage your account and preferences" />
 
-      {/* Tabs */}
-      <div className="flex items-center gap-1 flex-wrap bg-surface-card rounded-card p-1.5 w-fit">
-        {tabs.map((tab) => (
-          <button
-            key={tab}
-            onClick={() => setActiveTab(tab)}
-            className={`px-4 py-1.5 rounded text-[11.5px] font-inter transition-colors ${
-              activeTab === tab
-                ? "bg-brand text-white"
-                : "text-ink-secondary hover:text-white"
-            }`}
-          >
-            {tab}
-          </button>
-        ))}
-      </div>
+      <FilterTabs
+        tabs={tabs.map((t) => ({ label: t }))}
+        active={activeTab}
+        onChange={(t) => setActiveTab(t as SettingsTab)}
+        raised
+      />
 
       {/* Profile Tab */}
       {activeTab === "Profile" && (
@@ -353,7 +340,7 @@ const SettingsPage: React.FC = () => {
           </Section>
         </div>
       )}
-    </div>
+    </PageWrapper>
   );
 };
 

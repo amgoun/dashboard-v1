@@ -1,117 +1,37 @@
 import React, { useState } from "react";
+import { PageWrapper, PageHeader, FilterTabs, Avatar, StatusBadge, EmptyState } from "../shared";
+import { colors } from "../theme";
 
 type Category = "All" | "Unread" | "Important" | "Archived";
 
 const emails = [
-  {
-    id: 1,
-    sender: "Stripe",
-    avatar: "ST",
-    avatarColor: "#6366f1",
-    subject: "Your payout of $4,280.00 is on its way",
-    preview: "Hi Jenny, great news! Your latest payout has been processed and will arrive in your account within...",
-    time: "9:41 AM",
-    unread: true,
-    important: true,
-    category: "Finance",
-  },
-  {
-    id: 2,
-    sender: "Noah Bennett",
-    avatar: "NB",
-    avatarColor: "#ff4e3c",
-    subject: "Re: Invoice #4421 — Payment Confirmation",
-    preview: "Hi, just confirming that invoice #4421 has been approved and payment will be processed...",
-    time: "8:15 AM",
-    unread: true,
-    important: false,
-    category: "Work",
-  },
-  {
-    id: 3,
-    sender: "GitHub",
-    avatar: "GH",
-    avatarColor: "#a1a1a1",
-    subject: "[dasbhoard-dark] PR #12 merged",
-    preview: "Pull request #12 'feat: add analytics page' was merged into main by @jsmith at...",
-    time: "Yesterday",
-    unread: false,
-    important: false,
-    category: "Dev",
-  },
-  {
-    id: 4,
-    sender: "Emma Hayes",
-    avatar: "EH",
-    avatarColor: "#f59e0b",
-    subject: "Q2 Marketing Strategy — Action Required",
-    preview: "Please review the attached Q2 strategy deck before our call on Friday. Key changes include...",
-    time: "Yesterday",
-    unread: false,
-    important: true,
-    category: "Work",
-  },
-  {
-    id: 5,
-    sender: "Figma",
-    avatar: "FG",
-    avatarColor: "#28a263",
-    subject: "Liam Torres shared a file with you",
-    preview: "Liam Torres has shared 'Dashboard Redesign v3.fig' with you. Click here to open the file...",
-    time: "Apr 22",
-    unread: false,
-    important: false,
-    category: "Design",
-  },
-  {
-    id: 6,
-    sender: "Vercel",
-    avatar: "VC",
-    avatarColor: "#ffffff",
-    subject: "Deployment failed — dasbhoard-dark",
-    preview: "Your most recent deployment to production failed. Error: Module not found: lodash/isObject...",
-    time: "Apr 22",
-    unread: false,
-    important: true,
-    category: "Dev",
-  },
-  {
-    id: 7,
-    sender: "Notion",
-    avatar: "NO",
-    avatarColor: "#5f6868",
-    subject: "Weekly digest — 5 updates in your workspace",
-    preview: "Here's what happened in your team workspace this week. Sophia Reed updated Product Roadmap...",
-    time: "Apr 21",
-    unread: false,
-    important: false,
-    category: "Work",
-  },
-  {
-    id: 8,
-    sender: "Sophia Reed",
-    avatar: "SR",
-    avatarColor: "#28a263",
-    subject: "Analytics report attached — April 2026",
-    preview: "Hi Jenny, please find the full analytics report for April 2026. Total revenue was up 18%...",
-    time: "Apr 20",
-    unread: false,
-    important: true,
-    category: "Finance",
-  },
+  { id: 1, sender: "Stripe",       avatar: "ST", avatarColor: "#6366f1",        subject: "Your payout of $4,280.00 is on its way",          preview: "Hi Jenny, great news! Your latest payout has been processed and will arrive in your account within...", time: "9:41 AM",   unread: true,  important: true,  category: "Finance" },
+  { id: 2, sender: "Noah Bennett", avatar: "NB", avatarColor: colors.danger,     subject: "Re: Invoice #4421 — Payment Confirmation",         preview: "Hi, just confirming that invoice #4421 has been approved and payment will be processed...",               time: "8:15 AM",   unread: true,  important: false, category: "Work"    },
+  { id: 3, sender: "GitHub",       avatar: "GH", avatarColor: colors.inkSecondary,subject: "[dasbhoard-dark] PR #12 merged",                  preview: "Pull request #12 'feat: add analytics page' was merged into main by @jsmith at...",                      time: "Yesterday", unread: false, important: false, category: "Dev"     },
+  { id: 4, sender: "Emma Hayes",   avatar: "EH", avatarColor: "#f59e0b",         subject: "Q2 Marketing Strategy — Action Required",          preview: "Please review the attached Q2 strategy deck before our call on Friday. Key changes include...",            time: "Yesterday", unread: false, important: true,  category: "Work"    },
+  { id: 5, sender: "Figma",        avatar: "FG", avatarColor: colors.brand,      subject: "Liam Torres shared a file with you",               preview: "Liam Torres has shared 'Dashboard Redesign v3.fig' with you. Click here to open the file...",              time: "Apr 22",    unread: false, important: false, category: "Design"  },
+  { id: 6, sender: "Vercel",       avatar: "VC", avatarColor: "#ffffff",         subject: "Deployment failed — dasbhoard-dark",               preview: "Your most recent deployment to production failed. Error: Module not found: lodash/isObject...",             time: "Apr 22",    unread: false, important: true,  category: "Dev"     },
+  { id: 7, sender: "Notion",       avatar: "NO", avatarColor: colors.inkMuted,   subject: "Weekly digest — 5 updates in your workspace",      preview: "Here's what happened in your team workspace this week. Sophia Reed updated Product Roadmap...",            time: "Apr 21",    unread: false, important: false, category: "Work"    },
+  { id: 8, sender: "Sophia Reed",  avatar: "SR", avatarColor: colors.brand,      subject: "Analytics report attached — April 2026",           preview: "Hi Jenny, please find the full analytics report for April 2026. Total revenue was up 18%...",              time: "Apr 20",    unread: false, important: true,  category: "Finance" },
 ];
 
 const categoryColors: Record<string, string> = {
   Finance: "text-brand bg-brand/10",
-  Work: "text-[#f59e0b] bg-[#f59e0b]/10",
-  Dev: "text-[#8b5cf6] bg-[#8b5cf6]/10",
-  Design: "text-brand bg-brand/10",
+  Work:    "text-[#f59e0b] bg-[#f59e0b]/10",
+  Dev:     "text-[#8b5cf6] bg-[#8b5cf6]/10",
+  Design:  "text-brand bg-brand/10",
 };
+
+const ComposeIcon = () => (
+  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+  </svg>
+);
 
 const InboxPage: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<Category>("All");
-  const [selected, setSelected] = useState<typeof emails[0] | null>(emails[0]);
-  const [starred, setStarred] = useState<Set<number>>(new Set([1, 4]));
+  const [selected,       setSelected]       = useState<typeof emails[0] | null>(emails[0]);
+  const [starred,        setStarred]        = useState<Set<number>>(new Set([1, 4]));
 
   function toggleStar(id: number) {
     setStarred((prev) => {
@@ -121,59 +41,36 @@ const InboxPage: React.FC = () => {
     });
   }
 
-  const tabs: Category[] = ["All", "Unread", "Important", "Archived"];
   const unreadCount = emails.filter((e) => e.unread).length;
 
   const filtered = emails.filter((e) => {
-    if (activeCategory === "Unread") return e.unread;
+    if (activeCategory === "Unread")    return e.unread;
     if (activeCategory === "Important") return e.important || starred.has(e.id);
     return true;
   });
 
+  const TABS = [
+    { label: "All" },
+    { label: "Unread",    count: unreadCount > 0 ? unreadCount : undefined },
+    { label: "Important" },
+    { label: "Archived"  },
+  ];
+
   return (
-    <div className="px-4 sm:px-8 pb-8 space-y-5">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-white text-xl font-semibold font-inter">Inbox</h1>
-          <p className="text-ink-secondary text-[12.8px] font-inter mt-0.5">
-            {unreadCount} unread message{unreadCount !== 1 ? "s" : ""}
-          </p>
-        </div>
-        <button className="flex items-center gap-2 bg-brand hover:bg-brand/90 transition-colors text-white text-[12px] font-inter font-medium px-4 py-2 rounded-card">
-          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-          </svg>
-          Compose
-        </button>
-      </div>
+    <PageWrapper>
+      <PageHeader
+        title="Inbox"
+        subtitle={`${unreadCount} unread message${unreadCount !== 1 ? "s" : ""}`}
+        action={{ label: "Compose", icon: <ComposeIcon />, onClick: () => {} }}
+      />
 
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-4" style={{ minHeight: 520 }}>
         {/* Email list */}
-        <div className="lg:col-span-2 bg-surface-card rounded-card shadow-card flex flex-col overflow-hidden">
-          {/* Tabs */}
-          <div className="flex items-center gap-1 p-3 border-b border-white/5 flex-wrap">
-            {tabs.map((tab) => (
-              <button
-                key={tab}
-                onClick={() => setActiveCategory(tab)}
-                className={`px-3 py-1 rounded text-[10.5px] font-inter transition-colors ${
-                  activeCategory === tab
-                    ? "bg-brand text-white"
-                    : "text-ink-secondary hover:text-white bg-white/5"
-                }`}
-              >
-                {tab}
-                {tab === "Unread" && unreadCount > 0 && (
-                  <span className="ml-1.5 bg-danger text-white text-[8px] rounded-full px-1 py-px">
-                    {unreadCount}
-                  </span>
-                )}
-              </button>
-            ))}
+        <div className="lg:col-span-2 bg-surface-card rounded-card shadow-panel flex flex-col overflow-hidden">
+          <div className="flex items-center gap-1 p-3 border-b border-white/5">
+            <FilterTabs tabs={TABS} active={activeCategory} onChange={(t) => setActiveCategory(t as Category)} size="sm" />
           </div>
 
-          {/* List */}
           <div className="flex-1 overflow-y-auto">
             {filtered.map((email) => (
               <button
@@ -183,46 +80,34 @@ const InboxPage: React.FC = () => {
                   selected?.id === email.id ? "bg-brand/10" : "hover:bg-white/[0.02]"
                 } ${email.unread ? "bg-white/[0.015]" : ""}`}
               >
-                {/* Avatar */}
-                <div
-                  className="w-8 h-8 rounded-full flex items-center justify-center text-white text-[9.5px] font-inter font-semibold shrink-0 mt-0.5"
-                  style={{ backgroundColor: email.avatarColor === "#ffffff" ? "#333" : email.avatarColor }}
-                >
-                  {email.avatar}
-                </div>
+                <Avatar initials={email.avatar} color={email.avatarColor} size="sm" />
 
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center justify-between gap-1">
-                    <span className={`text-[12px] font-inter truncate ${email.unread ? "text-white font-semibold" : "text-ink-secondary font-normal"}`}>
+                    <span className={`text-[12px] truncate ${email.unread ? "text-white font-semibold" : "text-ink-secondary"}`}>
                       {email.sender}
                     </span>
-                    <span className="text-ink-muted text-[9px] font-inter shrink-0">{email.time}</span>
+                    <span className="text-ink-muted text-[9px] shrink-0">{email.time}</span>
                   </div>
-                  <p className={`text-[11px] font-inter truncate mt-0.5 ${email.unread ? "text-white" : "text-ink-muted"}`}>
+                  <p className={`text-[11px] truncate mt-0.5 ${email.unread ? "text-white" : "text-ink-muted"}`}>
                     {email.subject}
                   </p>
-                  <p className="text-ink-muted text-[10px] font-inter truncate mt-0.5">{email.preview}</p>
+                  <p className="text-ink-muted text-[10px] truncate mt-0.5">{email.preview}</p>
                 </div>
 
-                {/* Unread dot */}
-                {email.unread && (
-                  <span className="w-2 h-2 bg-brand rounded-full shrink-0 mt-1.5" />
-                )}
+                {email.unread && <span className="w-2 h-2 bg-brand rounded-full shrink-0 mt-1.5" />}
               </button>
             ))}
           </div>
         </div>
 
         {/* Email reader */}
-        <div className="lg:col-span-3 bg-surface-alt rounded-card shadow-card flex flex-col overflow-hidden">
+        <div className="lg:col-span-3 bg-surface-alt rounded-card shadow-panel flex flex-col overflow-hidden">
           {selected ? (
             <>
-              {/* Email header */}
               <div className="px-6 py-5 border-b border-white/5">
                 <div className="flex items-start justify-between gap-4 mb-4">
-                  <h2 className="text-white text-[14px] font-inter font-semibold leading-snug flex-1">
-                    {selected.subject}
-                  </h2>
+                  <h2 className="text-white text-[14px] font-semibold leading-snug flex-1">{selected.subject}</h2>
                   <div className="flex items-center gap-1.5 shrink-0">
                     <button
                       onClick={() => toggleStar(selected.id)}
@@ -231,7 +116,7 @@ const InboxPage: React.FC = () => {
                       <svg
                         className="w-4 h-4"
                         fill={starred.has(selected.id) ? "#f59e0b" : "none"}
-                        stroke={starred.has(selected.id) ? "#f59e0b" : "#5f6868"}
+                        stroke={starred.has(selected.id) ? "#f59e0b" : colors.inkMuted}
                         strokeWidth={1.8}
                         viewBox="0 0 24 24"
                       >
@@ -247,62 +132,46 @@ const InboxPage: React.FC = () => {
                 </div>
 
                 <div className="flex items-center gap-3">
-                  <div
-                    className="w-8 h-8 rounded-full flex items-center justify-center text-white text-[9.5px] font-inter font-semibold shrink-0"
-                    style={{ backgroundColor: selected.avatarColor === "#ffffff" ? "#333" : selected.avatarColor }}
-                  >
-                    {selected.avatar}
-                  </div>
+                  <Avatar initials={selected.avatar} color={selected.avatarColor} size="sm" />
                   <div>
-                    <p className="text-white text-[12px] font-inter font-medium">{selected.sender}</p>
-                    <p className="text-ink-muted text-[10px] font-inter">to Jenny Wilson · {selected.time}</p>
+                    <p className="text-white text-[12px] font-medium">{selected.sender}</p>
+                    <p className="text-ink-muted text-[10px]">to Jenny Wilson · {selected.time}</p>
                   </div>
-                  <span className={`ml-auto text-[9.5px] font-inter px-2 py-0.5 rounded-full ${categoryColors[selected.category] || "text-ink-secondary bg-white/5"}`}>
-                    {selected.category}
-                  </span>
+                  <StatusBadge
+                    label={selected.category}
+                    colorClass={categoryColors[selected.category] ?? "text-ink-secondary bg-white/5"}
+                    size="sm"
+                    className="ml-auto"
+                  />
                 </div>
               </div>
 
-              {/* Body */}
-              <div className="flex-1 overflow-y-auto px-6 py-5">
-                <p className="text-ink-secondary text-[12.5px] font-inter leading-relaxed">
-                  Hi Jenny,
-                </p>
-                <p className="text-ink-secondary text-[12.5px] font-inter leading-relaxed mt-3">
-                  {selected.preview}
-                </p>
-                <p className="text-ink-secondary text-[12.5px] font-inter leading-relaxed mt-3">
-                  Please don't hesitate to reach out if you have any questions or need additional information. 
-                  We're here to help and want to ensure everything goes smoothly.
-                </p>
-                <p className="text-ink-secondary text-[12.5px] font-inter leading-relaxed mt-3">
-                  Best regards,<br />
-                  <span className="text-white">{selected.sender}</span>
+              <div className="flex-1 overflow-y-auto px-6 py-5 space-y-3">
+                {["Hi Jenny,", selected.preview, "Please don't hesitate to reach out if you have any questions or need additional information. We're here to help and want to ensure everything goes smoothly."].map((p, i) => (
+                  <p key={i} className="text-ink-secondary text-[12.5px] leading-relaxed">{p}</p>
+                ))}
+                <p className="text-ink-secondary text-[12.5px] leading-relaxed">
+                  Best regards,<br /><span className="text-white">{selected.sender}</span>
                 </p>
               </div>
 
-              {/* Reply bar */}
               <div className="px-6 py-4 border-t border-white/5">
                 <div className="flex items-center gap-3 bg-surface-card rounded-card px-4 py-3">
                   <input
                     type="text"
                     placeholder={`Reply to ${selected.sender}...`}
-                    className="flex-1 bg-transparent text-white text-[12px] font-inter outline-none placeholder:text-ink-muted"
+                    className="flex-1 bg-transparent text-white text-[12px] outline-none placeholder:text-ink-muted"
                   />
-                  <button className="text-brand text-[11px] font-inter hover:text-white transition-colors shrink-0">
-                    Send Reply
-                  </button>
+                  <button className="text-brand text-[11px] hover:text-white transition-colors shrink-0">Send Reply</button>
                 </div>
               </div>
             </>
           ) : (
-            <div className="flex-1 flex items-center justify-center">
-              <p className="text-ink-muted text-[12px] font-inter">Select an email to read</p>
-            </div>
+            <EmptyState message="Select an email to read" />
           )}
         </div>
       </div>
-    </div>
+    </PageWrapper>
   );
 };
 

@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { PageWrapper, PageHeader, FilterTabs, StatusBadge, EmptyState } from "../shared";
+import { colors } from "../theme";
 
 type NewsCategory = "All" | "Finance" | "Tech" | "Business" | "Markets";
 
@@ -130,34 +132,22 @@ const NewsPage: React.FC = () => {
       : rest.filter((a) => a.category === activeCategory);
 
   return (
-    <div className="px-4 sm:px-8 pb-8 space-y-5">
-      {/* Header */}
-      <div className="flex items-center justify-between flex-wrap gap-3">
-        <div>
-          <h1 className="text-white text-xl font-semibold font-inter">News</h1>
-          <p className="text-ink-secondary text-[12.8px] font-inter mt-0.5">Latest in finance, tech, and markets</p>
-        </div>
-        {/* Category chips */}
-        <div className="flex items-center gap-1.5 flex-wrap">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActiveCategory(cat)}
-              className={`px-3 py-1 rounded text-[11px] font-inter transition-colors ${
-                activeCategory === cat
-                  ? "bg-brand text-white"
-                  : "text-ink-secondary hover:text-white bg-white/5"
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
-      </div>
+    <PageWrapper>
+      <PageHeader
+        title="News"
+        subtitle="Latest in finance, tech, and markets"
+        right={
+          <FilterTabs
+            tabs={categories.map((c) => ({ label: c }))}
+            active={activeCategory}
+            onChange={(c) => setActiveCategory(c as NewsCategory)}
+          />
+        }
+      />
 
       {/* Featured article */}
       {(activeCategory === "All" || activeCategory === featured.category as NewsCategory) && (
-        <div className="bg-surface-card rounded-card p-6 shadow-card relative overflow-hidden">
+        <div className="bg-surface-card rounded-card p-6 shadow-panel relative overflow-hidden">
           {/* Decorative gradient blob */}
           <div
             className="absolute top-0 right-0 w-64 h-64 rounded-full opacity-5 pointer-events-none"
@@ -166,9 +156,7 @@ const NewsPage: React.FC = () => {
 
           <div className="relative z-10 max-w-2xl">
             <div className="flex items-center gap-2 mb-3">
-              <span className={`text-[10px] font-inter px-2 py-0.5 rounded-full font-medium ${catColor[featured.category]}`}>
-                {featured.category}
-              </span>
+              <StatusBadge label={featured.category} colorClass={catColor[featured.category]} />
               <span className="text-brand text-[10px] font-plus-jakarta border border-brand/30 rounded px-2 py-0.5">
                 Featured
               </span>
@@ -196,8 +184,8 @@ const NewsPage: React.FC = () => {
                 >
                   <svg
                     className="w-4 h-4"
-                    fill={saved.has(featured.id) ? "#28a263" : "none"}
-                    stroke={saved.has(featured.id) ? "#28a263" : "#5f6868"}
+                    fill={saved.has(featured.id) ? colors.brand : "none"}
+                    stroke={saved.has(featured.id) ? colors.brand : colors.inkMuted}
                     strokeWidth={1.8}
                     viewBox="0 0 24 24"
                   >
@@ -221,23 +209,21 @@ const NewsPage: React.FC = () => {
         {filtered.map((article) => (
           <div
             key={article.id}
-            className="bg-surface-card rounded-card p-4 shadow-card hover:bg-surface-elevated transition-colors group cursor-pointer flex flex-col"
+            className="bg-surface-card rounded-card p-4 shadow-panel hover:bg-surface-elevated transition-colors group cursor-pointer flex flex-col"
           >
             {/* Color accent bar */}
             <div className="h-0.5 w-full rounded-full mb-4" style={{ backgroundColor: article.color }} />
 
             <div className="flex items-center justify-between mb-2">
-              <span className={`text-[9.5px] font-inter px-1.5 py-0.5 rounded-full ${catColor[article.category]}`}>
-                {article.category}
-              </span>
+              <StatusBadge label={article.category} colorClass={catColor[article.category]} size="sm" />
               <button
                 onClick={() => toggleSave(article.id)}
                 className="opacity-0 group-hover:opacity-100 transition-opacity"
               >
                 <svg
                   className="w-3.5 h-3.5"
-                  fill={saved.has(article.id) ? "#28a263" : "none"}
-                  stroke={saved.has(article.id) ? "#28a263" : "#5f6868"}
+                  fill={saved.has(article.id) ? colors.brand : "none"}
+                  stroke={saved.has(article.id) ? colors.brand : colors.inkMuted}
                   strokeWidth={1.8}
                   viewBox="0 0 24 24"
                 >
@@ -265,12 +251,8 @@ const NewsPage: React.FC = () => {
         ))}
       </div>
 
-      {filtered.length === 0 && (
-        <div className="flex items-center justify-center py-20">
-          <p className="text-ink-muted text-[12px] font-inter">No articles in this category yet.</p>
-        </div>
-      )}
-    </div>
+      {filtered.length === 0 && <EmptyState message="No articles in this category yet." />}
+    </PageWrapper>
   );
 };
 

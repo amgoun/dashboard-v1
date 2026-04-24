@@ -99,7 +99,7 @@ module.exports = {
 		},
 
 		boxShadow: {
-			card:          '0 4.3px 5px rgba(176, 176, 176, 0.05)',
+			panel:         '0 4.3px 20px rgba(0, 0, 0, 0.035)',
 			dropdown:      '0 8px 40px rgba(0, 0, 0, 0.40)',
 			'dropdown-sm': '0 8px 24px rgba(0, 0, 0, 0.35)',
 			'dropdown-xs': '0 4.3px 10px rgba(0, 0, 0, 0.25)',
