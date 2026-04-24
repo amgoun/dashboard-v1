@@ -7,6 +7,7 @@ export default defineConfig({
   base: process.env.NODE_ENV === "development" ? "/" : process.env.VITE_BASE_PATH || "/",
   optimizeDeps: {
     entries: ["src/main.tsx", "src/tempobook/**/*"],
+    include: ["lodash"],
   },
   plugins: [
     react(),

@@ -5,10 +5,25 @@ import ExpensesGauge from "./ExpensesGauge";
 import FinanceChart from "./FinanceChart";
 import TransactionsTable from "./TransactionsTable";
 import CardPanel from "./CardPanel";
+import OrdersPage from "./pages/OrdersPage";
+import SchedulesPage from "./pages/SchedulesPage";
+import MessagesPage from "./pages/MessagesPage";
+import InboxPage from "./pages/InboxPage";
+import AnalyticsPage from "./pages/AnalyticsPage";
+import NewsPage from "./pages/NewsPage";
+import SettingsPage from "./pages/SettingsPage";
+
+type Page = "Dashboard" | "Orders" | "Schedules" | "Messages" | "Inbox" | "Analytics" | "News" | "Settings";
 
 const Dashboard: React.FC = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [activePage, setActivePage] = useState<Page>("Dashboard");
+
+  function handleNavigate(label: string) {
+    setActivePage(label as Page);
+    setSearchQuery("");
+  }
 
   return (
     <div className="flex w-full min-h-screen bg-[#141414] font-inter">
@@ -28,7 +43,11 @@ const Dashboard: React.FC = () => {
           ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
         `}
       >
-        <Sidebar onClose={() => setSidebarOpen(false)} />
+        <Sidebar
+          onClose={() => setSidebarOpen(false)}
+          activePage={activePage}
+          onNavigate={handleNavigate}
+        />
       </div>
 
       {/* Main content */}
@@ -39,58 +58,61 @@ const Dashboard: React.FC = () => {
           onSearchChange={setSearchQuery}
         />
 
-        {/*
-          3-column grid:
-            col 1 — My Expenses  (row 1)
-            col 2 — My Finance   (row 1)
-            col 3 — My Card      (rows 1–2)
-            col 1-2 — My Transaction table (row 2)
-        */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 px-4 sm:px-8 pb-8 flex-1">
+        {activePage === "Dashboard" && (
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 px-4 sm:px-8 pb-8 flex-1">
 
-          {/* My Expenses — col 1, row 1 */}
-          <div className="bg-[#1b1b1b] rounded-[7px] p-6 shadow-[0_3.5px_44px_rgba(176,176,176,0.05)]">
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-[#a1a1a1] text-lg font-normal font-inter">My Expenses</h2>
-              <div className="flex items-center gap-1 border border-white/30 rounded px-2 py-1">
-                <span className="text-[#28a263] text-[8.8px] font-normal font-plus-jakarta">Last 7 Days</span>
-                <img
-                  src="https://storage.googleapis.com/tempo-image-previews/figma-exports%2Fuser_35fimNlXhOium67GLLJVWNU4rKV-1776729519591-node-3%3A641-1776729518170.png"
-                  alt="dropdown"
-                  className="w-2 h-2 object-contain"
-                />
+            {/* My Expenses — col 1, row 1 */}
+            <div className="bg-[#1b1b1b] rounded-[7px] p-6 shadow-[0_3.5px_44px_rgba(176,176,176,0.05)]">
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-[#a1a1a1] text-lg font-normal font-inter">My Expenses</h2>
+                <div className="flex items-center gap-1 border border-white/30 rounded px-2 py-1">
+                  <span className="text-[#28a263] text-[8.8px] font-normal font-plus-jakarta">Last 7 Days</span>
+                  <img
+                    src="https://storage.googleapis.com/tempo-image-previews/figma-exports%2Fuser_35fimNlXhOium67GLLJVWNU4rKV-1776729519591-node-3%3A641-1776729518170.png"
+                    alt="dropdown"
+                    className="w-2 h-2 object-contain"
+                  />
+                </div>
               </div>
+              <ExpensesGauge />
             </div>
-            <ExpensesGauge />
-          </div>
 
-          {/* My Finance — col 2, row 1 */}
-          <div className="bg-[#1d1d1d] rounded-[7px] p-6 shadow-[0_3.5px_44px_rgba(176,176,176,0.05)]">
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-[#a1a1a1] text-lg font-normal font-inter">My Finance</h2>
-              <div className="flex items-center gap-1 border border-white/30 rounded px-2 py-1">
-                <span className="text-[#28a263] text-[8.8px] font-normal font-plus-jakarta">Last 7 Days</span>
-                <img
-                  src="https://storage.googleapis.com/tempo-image-previews/figma-exports%2Fuser_35fimNlXhOium67GLLJVWNU4rKV-1776729519697-node-3%3A648-1776729518170.png"
-                  alt="dropdown"
-                  className="w-2 h-2 object-contain"
-                />
+            {/* My Finance — col 2, row 1 */}
+            <div className="bg-[#1d1d1d] rounded-[7px] p-6 shadow-[0_3.5px_44px_rgba(176,176,176,0.05)]">
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-[#a1a1a1] text-lg font-normal font-inter">My Finance</h2>
+                <div className="flex items-center gap-1 border border-white/30 rounded px-2 py-1">
+                  <span className="text-[#28a263] text-[8.8px] font-normal font-plus-jakarta">Last 7 Days</span>
+                  <img
+                    src="https://storage.googleapis.com/tempo-image-previews/figma-exports%2Fuser_35fimNlXhOium67GLLJVWNU4rKV-1776729519697-node-3%3A648-1776729518170.png"
+                    alt="dropdown"
+                    className="w-2 h-2 object-contain"
+                  />
+                </div>
               </div>
+              <FinanceChart />
             </div>
-            <FinanceChart />
-          </div>
 
-          {/* My Card — col 3, spans rows 1 & 2 */}
-          <div className="lg:row-span-2 lg:col-start-3">
-            <CardPanel />
-          </div>
+            {/* My Card — col 3, spans rows 1 & 2 */}
+            <div className="lg:row-span-2 lg:col-start-3">
+              <CardPanel />
+            </div>
 
-          {/* My Transaction — col 1-2, row 2 */}
-          <div className="lg:col-span-2">
-            <TransactionsTable searchQuery={searchQuery} />
-          </div>
+            {/* My Transaction — col 1-2, row 2 */}
+            <div className="lg:col-span-2">
+              <TransactionsTable searchQuery={searchQuery} />
+            </div>
 
-        </div>
+          </div>
+        )}
+
+        {activePage === "Orders" && <OrdersPage />}
+        {activePage === "Schedules" && <SchedulesPage />}
+        {activePage === "Messages" && <MessagesPage />}
+        {activePage === "Inbox" && <InboxPage />}
+        {activePage === "Analytics" && <AnalyticsPage />}
+        {activePage === "News" && <NewsPage />}
+        {activePage === "Settings" && <SettingsPage />}
       </main>
     </div>
   );

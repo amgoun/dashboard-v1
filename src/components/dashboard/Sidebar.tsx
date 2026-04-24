@@ -3,9 +3,11 @@ import { navItems } from "./data";
 
 interface SidebarProps {
   onClose?: () => void;
+  activePage: string;
+  onNavigate: (label: string) => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ onClose }) => (
+const Sidebar: React.FC<SidebarProps> = ({ onClose, activePage, onNavigate }) => (
   <aside className="w-[230px] h-screen sticky top-0 bg-[#1b1b1b] flex flex-col py-8 px-0 shrink-0 overflow-y-auto">
     {/* Logo */}
     <div className="flex items-center gap-2 px-8 mb-10">
@@ -32,26 +34,30 @@ const Sidebar: React.FC<SidebarProps> = ({ onClose }) => (
 
     {/* Navigation */}
     <nav className="flex flex-col gap-1 flex-1 px-4">
-      {navItems.map((item) => (
-        <div key={item.label} className="relative">
-          {item.active && (
-            <div className="absolute left-[-16px] top-1/2 -translate-y-1/2 w-1 h-6 bg-[#28a263] rounded-r-full" />
-          )}
-          <button
-            className={`flex items-center gap-3 w-full px-4 py-2.5 rounded-lg text-sm font-normal font-inter transition-colors ${
-              item.active ? "text-[#28a263] font-semibold" : "text-[#a1a1a1] hover:text-white"
-            }`}
-          >
-            <span className="relative flex items-center">
-              <img src={item.iconUrl} alt={item.label} className="w-[18px] h-[18px] object-contain" />
-              {item.badge && (
-                <span className="absolute -top-1 -right-1 w-[5.5px] h-[5.5px] bg-[#ff4e3c] rounded-full" />
-              )}
-            </span>
-            {item.label}
-          </button>
-        </div>
-      ))}
+      {navItems.map((item) => {
+        const isActive = activePage === item.label;
+        return (
+          <div key={item.label} className="relative">
+            {isActive && (
+              <div className="absolute left-[-16px] top-1/2 -translate-y-1/2 w-1 h-6 bg-[#28a263] rounded-r-full" />
+            )}
+            <button
+              onClick={() => { onNavigate(item.label); if (onClose) onClose(); }}
+              className={`flex items-center gap-3 w-full px-4 py-2.5 rounded-lg text-sm font-normal font-inter transition-colors ${
+                isActive ? "text-[#28a263] font-semibold bg-[#28a263]/10" : "text-[#a1a1a1] hover:text-white hover:bg-white/[0.03]"
+              }`}
+            >
+              <span className="relative flex items-center">
+                <img src={item.iconUrl} alt={item.label} className="w-[18px] h-[18px] object-contain" />
+                {item.badge && (
+                  <span className="absolute -top-1 -right-1 w-[5.5px] h-[5.5px] bg-[#ff4e3c] rounded-full" />
+                )}
+              </span>
+              {item.label}
+            </button>
+          </div>
+        );
+      })}
     </nav>
 
     {/* User Profile */}
