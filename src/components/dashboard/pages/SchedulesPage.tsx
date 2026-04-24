@@ -53,9 +53,10 @@ const SchedulesPage: React.FC = () => {
     else setCurrentMonth(m => m + 1);
   }
 
-  const cells = Array.from({ length: firstDay }).fill(null).concat(
-    Array.from({ length: daysInMonth }, (_, i) => i + 1)
-  );
+  const cells: (number | null)[] = [
+    ...Array.from({ length: firstDay }, () => null),
+    ...Array.from({ length: daysInMonth }, (_, i) => i + 1),
+  ];
 
   const isToday = (d: number) =>
     d === today.getDate() && currentMonth === today.getMonth() && currentYear === today.getFullYear();
