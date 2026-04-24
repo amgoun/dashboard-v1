@@ -102,7 +102,7 @@ const TopBar: React.FC<TopBarProps> = ({ onMenuOpen, searchQuery, onSearchChange
             aria-label="Messages"
           >
             <svg
-              className="w-4 h-4"
+              className="w-[18px] h-[18px]"
               fill="none"
               stroke={openPanel === "messages" ? "#28a263" : "#a1a1a1"}
               strokeWidth={1.8}
@@ -124,7 +124,7 @@ const TopBar: React.FC<TopBarProps> = ({ onMenuOpen, searchQuery, onSearchChange
             aria-label="Notifications"
           >
             <svg
-              className="w-4 h-4"
+              className="w-[18px] h-[18px]"
               fill="none"
               stroke={openPanel === "notifications" ? "#ff4e3c" : "#a1a1a1"}
               strokeWidth={1.8}
@@ -133,8 +133,8 @@ const TopBar: React.FC<TopBarProps> = ({ onMenuOpen, searchQuery, onSearchChange
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
             </svg>
             {/* Unread badge */}
-            <span className="absolute top-1 right-1 w-[9px] h-[9px] bg-[#ff4e3c] rounded-full flex items-center justify-center">
-              <span className="text-white text-[3.8px] font-normal font-inter">2</span>
+            <span className="absolute top-1 right-1 w-[12px] h-[12px] bg-[#ff4e3c] rounded-full flex items-center justify-center">
+              <span className="text-white text-[8px] font-normal font-inter p-1">2</span>
             </span>
           </button>
           {openPanel === "notifications" && <NotificationsDropdown />}

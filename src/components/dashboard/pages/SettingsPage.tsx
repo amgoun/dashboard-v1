@@ -37,7 +37,7 @@ const Field: React.FC<{ label: string; value: string; type?: string; readOnly?: 
 };
 
 const Section: React.FC<{ title: string; children: React.ReactNode }> = ({ title, children }) => (
-  <div className="bg-[#1b1b1b] rounded-[7px] p-5 shadow-[0_3.5px_44px_rgba(176,176,176,0.05)]">
+  <div className="bg-[#1b1b1b] rounded-[7px] p-5 shadow-[0_4.3px_5px_rgba(176,176,176,0.05)]">
     <h3 className="text-white text-[13px] font-inter font-semibold mb-4">{title}</h3>
     {children}
   </div>

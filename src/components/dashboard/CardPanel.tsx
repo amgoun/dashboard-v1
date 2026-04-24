@@ -2,19 +2,16 @@ import React from "react";
 import DebitCard from "./DebitCard";
 import QuickTransfer from "./QuickTransfer";
 import CardPaymentForm from "./CardPaymentForm";
+import TimeRangeDropdown from "./TimeRangeDropdown";
 
 const CardPanel: React.FC = () => (
-  <div className="w-full h-full bg-[#1d1d1d] rounded-lg p-7 shadow-[0_4.3px_54.9px_rgba(176,176,176,0.05)] flex flex-col gap-5">
+  <div className="w-full h-full bg-[#1d1d1d] rounded-lg p-7 shadow-[0_4.3px_5px_rgba(176,176,176,0.05)] flex flex-col gap-5">
     <div className="flex items-center justify-between">
       <h2 className="text-[#a1a1a1] text-base font-normal font-inter">My Card</h2>
-      <div className="flex items-center gap-1 border border-white/30 rounded px-2 py-1">
-        <span className="text-[#28a263] text-[8px] font-normal font-plus-jakarta">Recent</span>
-        <img
-          src="https://storage.googleapis.com/tempo-image-previews/figma-exports%2Fuser_35fimNlXhOium67GLLJVWNU4rKV-1776729519640-node-3%3A687-1776729518170.png"
-          alt="dropdown"
-          className="w-2 h-2 object-contain"
-        />
-      </div>
+      <TimeRangeDropdown
+        defaultValue="Recent"
+        options={["Recent", "Oldest", "Highest Balance", "Lowest Balance"]}
+      />
     </div>
 
     <DebitCard />

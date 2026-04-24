@@ -100,7 +100,7 @@ const AnalyticsPage: React.FC = () => {
       {/* KPIs */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {kpis.map((k) => (
-          <div key={k.label} className="bg-[#1b1b1b] rounded-[7px] p-4 shadow-[0_3.5px_44px_rgba(176,176,176,0.05)]">
+          <div key={k.label} className="bg-[#1b1b1b] rounded-[7px] p-4 shadow-[0_4.3px_5px_rgba(176,176,176,0.05)]">
             <p className="text-[#a1a1a1] text-[11px] font-inter mb-1">{k.label}</p>
             <p className="text-white text-2xl font-semibold font-inter">{k.value}</p>
             <div className="flex items-center gap-1.5 mt-1">
@@ -114,7 +114,7 @@ const AnalyticsPage: React.FC = () => {
       </div>
 
       {/* Revenue chart */}
-      <div className="bg-[#1b1b1b] rounded-[7px] p-5 shadow-[0_3.5px_44px_rgba(176,176,176,0.05)]">
+      <div className="bg-[#1b1b1b] rounded-[7px] p-5 shadow-[0_4.3px_5px_rgba(176,176,176,0.05)]">
         <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
           <h2 className="text-[#a1a1a1] text-sm font-inter">Revenue vs Expenses</h2>
           <div className="flex items-center gap-4">
@@ -151,7 +151,7 @@ const AnalyticsPage: React.FC = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
         {/* Traffic Sources Donut */}
-        <div className="lg:col-span-2 bg-[#1b1b1b] rounded-[7px] p-5 shadow-[0_3.5px_44px_rgba(176,176,176,0.05)]">
+        <div className="lg:col-span-2 bg-[#1b1b1b] rounded-[7px] p-5 shadow-[0_4.3px_5px_rgba(176,176,176,0.05)]">
           <h2 className="text-[#a1a1a1] text-sm font-inter mb-4">Traffic Sources</h2>
           <div className="flex items-center gap-4">
             <ResponsiveContainer width={130} height={130}>
@@ -184,7 +184,7 @@ const AnalyticsPage: React.FC = () => {
         </div>
 
         {/* Top Products */}
-        <div className="lg:col-span-3 bg-[#1d1d1d] rounded-[7px] p-5 shadow-[0_3.5px_44px_rgba(176,176,176,0.05)]">
+        <div className="lg:col-span-3 bg-[#1d1d1d] rounded-[7px] p-5 shadow-[0_4.3px_5px_rgba(176,176,176,0.05)]">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-[#a1a1a1] text-sm font-inter">Top Products by Sales</h2>
           </div>

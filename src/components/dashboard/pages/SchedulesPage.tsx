@@ -85,7 +85,7 @@ const SchedulesPage: React.FC = () => {
           { label: "Upcoming", value: "31", icon: "🗓" },
           { label: "Completed", value: "142", icon: "✅" },
         ].map((s) => (
-          <div key={s.label} className="bg-[#1b1b1b] rounded-[7px] p-4 shadow-[0_3.5px_44px_rgba(176,176,176,0.05)]">
+          <div key={s.label} className="bg-[#1b1b1b] rounded-[7px] p-4 shadow-[0_4.3px_5px_rgba(176,176,176,0.05)]">
             <p className="text-[#a1a1a1] text-[11px] font-inter mb-2">{s.label}</p>
             <p className="text-white text-2xl font-semibold font-inter">{s.value}</p>
           </div>
@@ -94,7 +94,7 @@ const SchedulesPage: React.FC = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {/* Mini Calendar */}
-        <div className="bg-[#1b1b1b] rounded-[7px] p-5 shadow-[0_3.5px_44px_rgba(176,176,176,0.05)]">
+        <div className="bg-[#1b1b1b] rounded-[7px] p-5 shadow-[0_4.3px_5px_rgba(176,176,176,0.05)]">
           <div className="flex items-center justify-between mb-4">
             <button onClick={prevMonth} className="text-[#a1a1a1] hover:text-white p-1">
               <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
@@ -156,7 +156,7 @@ const SchedulesPage: React.FC = () => {
         </div>
 
         {/* Today's Timeline */}
-        <div className="lg:col-span-2 bg-[#1d1d1d] rounded-[7px] p-5 shadow-[0_3.5px_44px_rgba(176,176,176,0.05)]">
+        <div className="lg:col-span-2 bg-[#1d1d1d] rounded-[7px] p-5 shadow-[0_4.3px_5px_rgba(176,176,176,0.05)]">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-[#a1a1a1] text-sm font-inter">Today's Schedule</h2>
             <span className="text-[#28a263] text-[10px] font-plus-jakarta border border-[#28a263]/30 rounded px-2 py-0.5">
@@ -196,7 +196,7 @@ const SchedulesPage: React.FC = () => {
       </div>
 
       {/* Upcoming Events */}
-      <div className="bg-[#1b1b1b] rounded-[7px] p-5 shadow-[0_3.5px_44px_rgba(176,176,176,0.05)]">
+      <div className="bg-[#1b1b1b] rounded-[7px] p-5 shadow-[0_4.3px_5px_rgba(176,176,176,0.05)]">
         <h2 className="text-[#a1a1a1] text-sm font-inter mb-4">Upcoming Events</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
           {upcoming.map((ev) => (

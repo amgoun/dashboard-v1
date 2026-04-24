@@ -5,6 +5,7 @@ import ExpensesGauge from "./ExpensesGauge";
 import FinanceChart from "./FinanceChart";
 import TransactionsTable from "./TransactionsTable";
 import CardPanel from "./CardPanel";
+import TimeRangeDropdown from "./TimeRangeDropdown";
 import OrdersPage from "./pages/OrdersPage";
 import SchedulesPage from "./pages/SchedulesPage";
 import MessagesPage from "./pages/MessagesPage";
@@ -62,33 +63,19 @@ const Dashboard: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 px-4 sm:px-8 pb-8 flex-1">
 
             {/* My Expenses — col 1, row 1 */}
-            <div className="bg-[#1b1b1b] rounded-[7px] p-6 shadow-[0_3.5px_44px_rgba(176,176,176,0.05)]">
+            <div className="bg-[#1b1b1b] rounded-[7px] p-6 shadow-[0_4.3px_5px_rgba(176,176,176,0.05)]">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-[#a1a1a1] text-lg font-normal font-inter">My Expenses</h2>
-                <div className="flex items-center gap-1 border border-white/30 rounded px-2 py-1">
-                  <span className="text-[#28a263] text-[8.8px] font-normal font-plus-jakarta">Last 7 Days</span>
-                  <img
-                    src="https://storage.googleapis.com/tempo-image-previews/figma-exports%2Fuser_35fimNlXhOium67GLLJVWNU4rKV-1776729519591-node-3%3A641-1776729518170.png"
-                    alt="dropdown"
-                    className="w-2 h-2 object-contain"
-                  />
-                </div>
+                <TimeRangeDropdown />
               </div>
               <ExpensesGauge />
             </div>
 
             {/* My Finance — col 2, row 1 */}
-            <div className="bg-[#1d1d1d] rounded-[7px] p-6 shadow-[0_3.5px_44px_rgba(176,176,176,0.05)]">
+            <div className="bg-[#1d1d1d] rounded-[7px] p-6 shadow-[0_4.3px_5px_rgba(176,176,176,0.05)]">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-[#a1a1a1] text-lg font-normal font-inter">My Finance</h2>
-                <div className="flex items-center gap-1 border border-white/30 rounded px-2 py-1">
-                  <span className="text-[#28a263] text-[8.8px] font-normal font-plus-jakarta">Last 7 Days</span>
-                  <img
-                    src="https://storage.googleapis.com/tempo-image-previews/figma-exports%2Fuser_35fimNlXhOium67GLLJVWNU4rKV-1776729519697-node-3%3A648-1776729518170.png"
-                    alt="dropdown"
-                    className="w-2 h-2 object-contain"
-                  />
-                </div>
+                <TimeRangeDropdown />
               </div>
               <FinanceChart />
             </div>

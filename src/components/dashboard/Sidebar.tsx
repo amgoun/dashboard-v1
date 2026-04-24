@@ -48,7 +48,17 @@ const Sidebar: React.FC<SidebarProps> = ({ onClose, activePage, onNavigate }) =>
               }`}
             >
               <span className="relative flex items-center">
-                <img src={item.iconUrl} alt={item.label} className="w-[18px] h-[18px] object-contain" />
+                <img
+                  src={item.iconUrl}
+                  alt={item.label}
+                  className="w-[18px] h-[18px] object-contain transition-all duration-200"
+                  style={{
+                    filter: isActive
+                      ? "brightness(0) invert(55%) sepia(28%) saturate(1186%) hue-rotate(103deg) brightness(85%) contrast(86%)"
+                      : "brightness(0) invert(66%) sepia(0%) saturate(0%) hue-rotate(180deg) brightness(93%) contrast(88%)",
+                    opacity: isActive ? 1 : 0.75,
+                  }}
+                />
                 {item.badge && (
                   <span className="absolute -top-1 -right-1 w-[5.5px] h-[5.5px] bg-[#ff4e3c] rounded-full" />
                 )}

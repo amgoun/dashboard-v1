@@ -106,7 +106,7 @@ const MessagesPage: React.FC = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4" style={{ height: "calc(100vh - 220px)", minHeight: 480 }}>
         {/* Conversation list */}
-        <div className="bg-[#1b1b1b] rounded-[7px] shadow-[0_3.5px_44px_rgba(176,176,176,0.05)] flex flex-col overflow-hidden">
+        <div className="bg-[#1b1b1b] rounded-[7px] shadow-[0_4.3px_5px_rgba(176,176,176,0.05)] flex flex-col overflow-hidden">
           {/* Search */}
           <div className="p-4 border-b border-white/5">
             <div className="flex items-center gap-2 bg-[#141414] rounded-[7px] px-3 py-2">
@@ -162,7 +162,7 @@ const MessagesPage: React.FC = () => {
         </div>
 
         {/* Chat window */}
-        <div className="lg:col-span-2 bg-[#1d1d1d] rounded-[7px] shadow-[0_3.5px_44px_rgba(176,176,176,0.05)] flex flex-col overflow-hidden">
+        <div className="lg:col-span-2 bg-[#1d1d1d] rounded-[7px] shadow-[0_4.3px_5px_rgba(176,176,176,0.05)] flex flex-col overflow-hidden">
           {/* Chat header */}
           <div className="flex items-center gap-3 px-5 py-4 border-b border-white/5">
             <div className="relative">

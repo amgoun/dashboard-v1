@@ -157,7 +157,7 @@ const NewsPage: React.FC = () => {
 
       {/* Featured article */}
       {(activeCategory === "All" || activeCategory === featured.category as NewsCategory) && (
-        <div className="bg-[#1b1b1b] rounded-[7px] p-6 shadow-[0_3.5px_44px_rgba(176,176,176,0.05)] relative overflow-hidden">
+        <div className="bg-[#1b1b1b] rounded-[7px] p-6 shadow-[0_4.3px_5px_rgba(176,176,176,0.05)] relative overflow-hidden">
           {/* Decorative gradient blob */}
           <div
             className="absolute top-0 right-0 w-64 h-64 rounded-full opacity-5 pointer-events-none"
@@ -221,7 +221,7 @@ const NewsPage: React.FC = () => {
         {filtered.map((article) => (
           <div
             key={article.id}
-            className="bg-[#1b1b1b] rounded-[7px] p-4 shadow-[0_3.5px_44px_rgba(176,176,176,0.05)] hover:bg-[#1f1f1f] transition-colors group cursor-pointer flex flex-col"
+            className="bg-[#1b1b1b] rounded-[7px] p-4 shadow-[0_4.3px_5px_rgba(176,176,176,0.05)] hover:bg-[#1f1f1f] transition-colors group cursor-pointer flex flex-col"
           >
             {/* Color accent bar */}
             <div className="h-0.5 w-full rounded-full mb-4" style={{ backgroundColor: article.color }} />

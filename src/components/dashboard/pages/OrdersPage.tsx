@@ -86,7 +86,7 @@ const OrdersPage: React.FC = () => {
         {stats.map((s) => (
           <div
             key={s.label}
-            className="bg-[#1b1b1b] rounded-[7px] p-4 shadow-[0_3.5px_44px_rgba(176,176,176,0.05)]"
+            className="bg-[#1b1b1b] rounded-[7px] p-4 shadow-[0_4.3px_5px_rgba(176,176,176,0.05)]"
           >
             <p className="text-[#a1a1a1] text-[11px] font-inter mb-1">{s.label}</p>
             <p className="text-white text-2xl font-semibold font-inter">{s.value}</p>
@@ -99,7 +99,7 @@ const OrdersPage: React.FC = () => {
 
       {/* Chart + summary */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        <div className="lg:col-span-2 bg-[#1b1b1b] rounded-[7px] p-5 shadow-[0_3.5px_44px_rgba(176,176,176,0.05)]">
+        <div className="lg:col-span-2 bg-[#1b1b1b] rounded-[7px] p-5 shadow-[0_4.3px_5px_rgba(176,176,176,0.05)]">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-[#a1a1a1] text-sm font-inter">Order Volume</h2>
             <div className="flex items-center gap-1 border border-white/20 rounded px-2 py-1">
@@ -116,7 +116,7 @@ const OrdersPage: React.FC = () => {
           </ResponsiveContainer>
         </div>
 
-        <div className="bg-[#1b1b1b] rounded-[7px] p-5 shadow-[0_3.5px_44px_rgba(176,176,176,0.05)] flex flex-col gap-4">
+        <div className="bg-[#1b1b1b] rounded-[7px] p-5 shadow-[0_4.3px_5px_rgba(176,176,176,0.05)] flex flex-col gap-4">
           <h2 className="text-[#a1a1a1] text-sm font-inter">Order Status</h2>
           {[
             { label: "Completed", pct: 75, color: "#28a263" },
@@ -141,7 +141,7 @@ const OrdersPage: React.FC = () => {
       </div>
 
       {/* Orders table */}
-      <div className="bg-[#1d1d1d] rounded-[7px] p-5 shadow-[0_3.5px_44px_rgba(176,176,176,0.05)]">
+      <div className="bg-[#1d1d1d] rounded-[7px] p-5 shadow-[0_4.3px_5px_rgba(176,176,176,0.05)]">
         {/* Tabs */}
         <div className="flex items-center justify-between mb-4 flex-wrap gap-3">
           <div className="flex items-center gap-1 flex-wrap">

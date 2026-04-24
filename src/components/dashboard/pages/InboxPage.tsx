@@ -150,7 +150,7 @@ const InboxPage: React.FC = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-4" style={{ minHeight: 520 }}>
         {/* Email list */}
-        <div className="lg:col-span-2 bg-[#1b1b1b] rounded-[7px] shadow-[0_3.5px_44px_rgba(176,176,176,0.05)] flex flex-col overflow-hidden">
+        <div className="lg:col-span-2 bg-[#1b1b1b] rounded-[7px] shadow-[0_4.3px_5px_rgba(176,176,176,0.05)] flex flex-col overflow-hidden">
           {/* Tabs */}
           <div className="flex items-center gap-1 p-3 border-b border-white/5 flex-wrap">
             {tabs.map((tab) => (
@@ -214,7 +214,7 @@ const InboxPage: React.FC = () => {
         </div>
 
         {/* Email reader */}
-        <div className="lg:col-span-3 bg-[#1d1d1d] rounded-[7px] shadow-[0_3.5px_44px_rgba(176,176,176,0.05)] flex flex-col overflow-hidden">
+        <div className="lg:col-span-3 bg-[#1d1d1d] rounded-[7px] shadow-[0_4.3px_5px_rgba(176,176,176,0.05)] flex flex-col overflow-hidden">
           {selected ? (
             <>
               {/* Email header */}
