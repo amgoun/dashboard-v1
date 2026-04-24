@@ -65,13 +65,13 @@ const Dashboard: React.FC = () => {
 
             {/* My Expenses — col 1, row 1 */}
             <div className="bg-surface-card rounded-card p-6 shadow-panel">
-              <SectionHeader title="My Expenses" right={<TimeRangeDropdown />} className="mb-4 text-lg" />
+              <SectionHeader title="My Expenses" right={<TimeRangeDropdown />} className="mb-4" titleSize="text-lg" />
               <ExpensesGauge />
             </div>
 
             {/* My Finance — col 2, row 1 */}
             <div className="bg-surface-alt rounded-card p-6 shadow-panel">
-              <SectionHeader title="My Finance" right={<TimeRangeDropdown />} className="mb-4 text-lg" />
+              <SectionHeader title="My Finance" right={<TimeRangeDropdown />} className="mb-4" titleSize="text-lg" />
               <FinanceChart />
             </div>
 
