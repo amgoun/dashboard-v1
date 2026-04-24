@@ -56,9 +56,9 @@ const notifications: Notification[] = [
 
 const typeConfig: Record<NotifType, { bg: string; icon: React.ReactNode }> = {
   success: {
-    bg: "bg-[#28a263]/15",
+    bg: "bg-brand/15",
     icon: (
-      <svg className="w-4 h-4 text-[#28a263]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+      <svg className="w-4 h-4 text-brand" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
       </svg>
     ),
@@ -74,15 +74,15 @@ const typeConfig: Record<NotifType, { bg: string; icon: React.ReactNode }> = {
   info: {
     bg: "bg-white/5",
     icon: (
-      <svg className="w-4 h-4 text-[#a1a1a1]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+      <svg className="w-4 h-4 text-ink-secondary" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
     ),
   },
   error: {
-    bg: "bg-[#ff4e3c]/10",
+    bg: "bg-danger/10",
     icon: (
-      <svg className="w-4 h-4 text-[#ff4e3c]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+      <svg className="w-4 h-4 text-danger" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
       </svg>
     ),
@@ -93,12 +93,12 @@ const NotificationsDropdown: React.FC = () => {
   const unreadCount = notifications.filter((n) => !n.read).length;
 
   return (
-    <div className="absolute right-0 top-full mt-2 w-[300px] bg-[#1b1b1b] rounded-xl shadow-[0_8px_40px_rgba(0,0,0,0.4)] border border-white/5 z-50 overflow-hidden">
+    <div className="absolute right-0 top-full mt-2 w-[300px] bg-surface-card rounded-xl shadow-dropdown border border-white/5 z-50 overflow-hidden">
       {/* Header */}
       <div className="flex items-center justify-between px-4 py-3 border-b border-white/5">
         <h3 className="text-white text-[13px] font-semibold font-inter">Notifications</h3>
         {unreadCount > 0 && (
-          <span className="bg-[#ff4e3c]/20 text-[#ff4e3c] text-[9px] font-inter font-medium px-2 py-0.5 rounded-full">
+          <span className="bg-danger/20 text-danger text-[9px] font-inter font-medium px-2 py-0.5 rounded-full">
             {unreadCount} new
           </span>
         )}
@@ -123,17 +123,17 @@ const NotificationsDropdown: React.FC = () => {
               {/* Content */}
               <div className="flex-1 min-w-0">
                 <div className="flex items-start justify-between gap-2">
-                  <p className={`text-[12px] font-inter leading-tight ${!notif.read ? "text-white font-medium" : "text-[#a1a1a1]"}`}>
+                  <p className={`text-[12px] font-inter leading-tight ${!notif.read ? "text-white font-medium" : "text-ink-secondary"}`}>
                     {notif.title}
                   </p>
-                  <span className="text-[#5f6868] text-[9px] font-inter shrink-0 mt-0.5">{notif.time}</span>
+                  <span className="text-ink-muted text-[9px] font-inter shrink-0 mt-0.5">{notif.time}</span>
                 </div>
-                <p className="text-[#5f6868] text-[10.5px] font-inter mt-0.5 leading-snug">{notif.description}</p>
+                <p className="text-ink-muted text-[10.5px] font-inter mt-0.5 leading-snug">{notif.description}</p>
               </div>
 
               {/* Unread dot */}
               {!notif.read && (
-                <div className="w-1.5 h-1.5 rounded-full bg-[#28a263] shrink-0 mt-1.5" />
+                <div className="w-1.5 h-1.5 rounded-full bg-brand shrink-0 mt-1.5" />
               )}
             </li>
           );
@@ -142,7 +142,7 @@ const NotificationsDropdown: React.FC = () => {
 
       {/* Footer */}
       <div className="px-4 py-3 border-t border-white/5">
-      <button className="w-full text-center text-[#28a263] text-[11px] font-inter hover:text-[#3dbd76] transition-colors">
+      <button className="w-full text-center text-brand text-[11px] font-inter hover:opacity-75 transition-opacity">
         See all notifications
       </button>
       </div>

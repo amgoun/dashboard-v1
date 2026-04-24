@@ -33,11 +33,11 @@ const TimeRangeDropdown: React.FC<TimeRangeDropdownProps> = ({
         onClick={() => setOpen((prev) => !prev)}
         className="flex items-center gap-1 border border-white/30 rounded px-2 py-1 bg-transparent hover:bg-white/[0.03] transition-colors"
       >
-        <span className="text-[#28a263] text-[8.8px] font-normal font-plus-jakarta">
+        <span className="text-brand text-[8.8px] font-normal font-plus-jakarta">
           {selected}
         </span>
         <svg
-          className={`w-2 h-2 text-[#28a263] transition-transform ${open ? "rotate-180" : ""}`}
+          className={`w-2 h-2 text-brand transition-transform ${open ? "rotate-180" : ""}`}
           fill="none"
           stroke="currentColor"
           strokeWidth={2.5}
@@ -48,7 +48,7 @@ const TimeRangeDropdown: React.FC<TimeRangeDropdownProps> = ({
       </button>
 
       {open && (
-        <div className="absolute right-0 top-full z-40 mt-1 min-w-[92px] overflow-hidden rounded-md border border-white/10 bg-[#1b1b1b] shadow-[0_4.3px_10px_rgba(0,0,0,0.25)]">
+        <div className="absolute right-0 top-full z-40 mt-1 min-w-[92px] overflow-hidden rounded-md border border-white/10 bg-surface-card shadow-dropdown-xs">
           {options.map((option) => (
             <button
               key={option}
@@ -59,8 +59,8 @@ const TimeRangeDropdown: React.FC<TimeRangeDropdownProps> = ({
               }}
               className={`block w-full px-2 py-1.5 text-left text-[8.8px] font-plus-jakarta transition-colors ${
                 selected === option
-                  ? "bg-[#28a263]/10 text-[#28a263]"
-                  : "text-[#a1a1a1] hover:bg-white/[0.03] hover:text-white"
+                  ? "bg-brand/10 text-brand"
+                  : "text-ink-secondary hover:bg-white/[0.03] hover:text-white"
               }`}
             >
               {option}

@@ -32,10 +32,10 @@ const orders = [
 type FilterTab = "All" | "Pending" | "Processing" | "Completed" | "Cancelled";
 
 const statusColor: Record<string, string> = {
-  Completed: "text-[#28a263] bg-[#28a263]/10",
+  Completed: "text-brand bg-brand/10",
   Processing: "text-[#f59e0b] bg-[#f59e0b]/10",
-  Pending: "text-[#a1a1a1] bg-white/5",
-  Cancelled: "text-[#ff4e3c] bg-[#ff4e3c]/10",
+  Pending: "text-ink-secondary bg-white/5",
+  Cancelled: "text-danger bg-danger/10",
 };
 
 const stats = [
@@ -48,9 +48,9 @@ const stats = [
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
     return (
-      <div className="bg-[#1b1b1b] border border-white/10 rounded-lg px-3 py-2 text-[11px] font-inter">
-        <p className="text-[#a1a1a1]">{label}</p>
-        <p className="text-[#28a263] font-semibold">{payload[0].value} orders</p>
+      <div className="bg-surface-card border border-white/10 rounded-lg px-3 py-2 text-[11px] font-inter">
+        <p className="text-ink-secondary">{label}</p>
+        <p className="text-brand font-semibold">{payload[0].value} orders</p>
       </div>
     );
   }
@@ -71,9 +71,9 @@ const OrdersPage: React.FC = () => {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-white text-xl font-semibold font-inter">Orders</h1>
-          <p className="text-[#a1a1a1] text-[12.8px] font-inter mt-0.5">Track and manage all customer orders</p>
+          <p className="text-ink-secondary text-[12.8px] font-inter mt-0.5">Track and manage all customer orders</p>
         </div>
-        <button className="flex items-center gap-2 bg-[#28a263] hover:bg-[#23935a] transition-colors text-white text-[12px] font-inter font-medium px-4 py-2 rounded-[7px]">
+        <button className="flex items-center gap-2 bg-brand hover:bg-brand/90 transition-colors text-white text-[12px] font-inter font-medium px-4 py-2 rounded-card">
           <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
           </svg>
@@ -86,12 +86,12 @@ const OrdersPage: React.FC = () => {
         {stats.map((s) => (
           <div
             key={s.label}
-            className="bg-[#1b1b1b] rounded-[7px] p-4 shadow-[0_4.3px_5px_rgba(176,176,176,0.05)]"
+            className="bg-surface-card rounded-card p-4 shadow-card"
           >
-            <p className="text-[#a1a1a1] text-[11px] font-inter mb-1">{s.label}</p>
+            <p className="text-ink-secondary text-[11px] font-inter mb-1">{s.label}</p>
             <p className="text-white text-2xl font-semibold font-inter">{s.value}</p>
-            <p className={`text-[10px] font-inter mt-1 ${s.up ? "text-[#28a263]" : "text-[#ff4e3c]"}`}>
-              {s.delta} <span className="text-[#5f6868]">vs last week</span>
+            <p className={`text-[10px] font-inter mt-1 ${s.up ? "text-brand" : "text-danger"}`}>
+              {s.delta} <span className="text-ink-muted">vs last week</span>
             </p>
           </div>
         ))}
@@ -99,11 +99,11 @@ const OrdersPage: React.FC = () => {
 
       {/* Chart + summary */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        <div className="lg:col-span-2 bg-[#1b1b1b] rounded-[7px] p-5 shadow-[0_4.3px_5px_rgba(176,176,176,0.05)]">
+        <div className="lg:col-span-2 bg-surface-card rounded-card p-5 shadow-card">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-[#a1a1a1] text-sm font-inter">Order Volume</h2>
+            <h2 className="text-ink-secondary text-sm font-inter">Order Volume</h2>
             <div className="flex items-center gap-1 border border-white/20 rounded px-2 py-1">
-              <span className="text-[#28a263] text-[8.8px] font-plus-jakarta">This Week</span>
+              <span className="text-brand text-[8.8px] font-plus-jakarta">This Week</span>
             </div>
           </div>
           <ResponsiveContainer width="100%" height={160}>
@@ -116,8 +116,8 @@ const OrdersPage: React.FC = () => {
           </ResponsiveContainer>
         </div>
 
-        <div className="bg-[#1b1b1b] rounded-[7px] p-5 shadow-[0_4.3px_5px_rgba(176,176,176,0.05)] flex flex-col gap-4">
-          <h2 className="text-[#a1a1a1] text-sm font-inter">Order Status</h2>
+        <div className="bg-surface-card rounded-card p-5 shadow-card flex flex-col gap-4">
+          <h2 className="text-ink-secondary text-sm font-inter">Order Status</h2>
           {[
             { label: "Completed", pct: 75, color: "#28a263" },
             { label: "Processing", pct: 17, color: "#f59e0b" },
@@ -126,7 +126,7 @@ const OrdersPage: React.FC = () => {
           ].map((s) => (
             <div key={s.label}>
               <div className="flex justify-between text-[11px] font-inter mb-1">
-                <span className="text-[#a1a1a1]">{s.label}</span>
+                <span className="text-ink-secondary">{s.label}</span>
                 <span style={{ color: s.color }}>{s.pct}%</span>
               </div>
               <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
@@ -141,7 +141,7 @@ const OrdersPage: React.FC = () => {
       </div>
 
       {/* Orders table */}
-      <div className="bg-[#1d1d1d] rounded-[7px] p-5 shadow-[0_4.3px_5px_rgba(176,176,176,0.05)]">
+      <div className="bg-surface-alt rounded-card p-5 shadow-card">
         {/* Tabs */}
         <div className="flex items-center justify-between mb-4 flex-wrap gap-3">
           <div className="flex items-center gap-1 flex-wrap">
@@ -151,15 +151,15 @@ const OrdersPage: React.FC = () => {
                 onClick={() => setActiveTab(tab)}
                 className={`px-3 py-1 rounded text-[11px] font-inter transition-colors ${
                   activeTab === tab
-                    ? "bg-[#28a263] text-white"
-                    : "text-[#a1a1a1] hover:text-white bg-white/5"
+                    ? "bg-brand text-white"
+                    : "text-ink-secondary hover:text-white bg-white/5"
                 }`}
               >
                 {tab}
               </button>
             ))}
           </div>
-          <span className="text-[#5f6868] text-[10px] font-inter">
+          <span className="text-ink-muted text-[10px] font-inter">
             {filtered.length} order{filtered.length !== 1 ? "s" : ""}
           </span>
         </div>
@@ -169,7 +169,7 @@ const OrdersPage: React.FC = () => {
             <thead>
               <tr className="border-b border-white/5">
                 {["Order ID", "Customer", "Product", "Date", "Amount", "Status"].map((h) => (
-                  <th key={h} className="text-left text-[#5f6868] text-[11px] font-inter font-normal pb-2 pr-4">
+                  <th key={h} className="text-left text-ink-muted text-[11px] font-inter font-normal pb-2 pr-4">
                     {h}
                   </th>
                 ))}
@@ -178,10 +178,10 @@ const OrdersPage: React.FC = () => {
             <tbody>
               {filtered.map((order) => (
                 <tr key={order.id} className="border-b border-white/[0.03] hover:bg-white/[0.02] transition-colors">
-                  <td className="py-3 pr-4 text-[#28a263] text-[11.5px] font-inter">{order.id}</td>
+                  <td className="py-3 pr-4 text-brand text-[11.5px] font-inter">{order.id}</td>
                   <td className="py-3 pr-4 text-white text-[11.5px] font-inter">{order.customer}</td>
-                  <td className="py-3 pr-4 text-[#a1a1a1] text-[11.5px] font-inter">{order.product}</td>
-                  <td className="py-3 pr-4 text-[#5f6868] text-[11.5px] font-inter">{order.date}</td>
+                  <td className="py-3 pr-4 text-ink-secondary text-[11.5px] font-inter">{order.product}</td>
+                  <td className="py-3 pr-4 text-ink-muted text-[11.5px] font-inter">{order.date}</td>
                   <td className="py-3 pr-4 text-white text-[11.5px] font-inter font-medium">{order.amount}</td>
                   <td className="py-3">
                     <span className={`text-[10px] font-inter px-2 py-0.5 rounded-full ${statusColor[order.status]}`}>

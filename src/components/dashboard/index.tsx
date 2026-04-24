@@ -27,7 +27,7 @@ const Dashboard: React.FC = () => {
   }
 
   return (
-    <div className="flex w-full min-h-screen bg-[#141414] font-inter">
+    <div className="flex w-full min-h-screen bg-surface-page font-inter">
       {/* Mobile overlay backdrop */}
       {sidebarOpen && (
         <div
@@ -63,18 +63,18 @@ const Dashboard: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 px-4 sm:px-8 pb-8 flex-1">
 
             {/* My Expenses — col 1, row 1 */}
-            <div className="bg-[#1b1b1b] rounded-[7px] p-6 shadow-[0_4.3px_5px_rgba(176,176,176,0.05)]">
+            <div className="bg-surface-card rounded-card p-6 shadow-card">
               <div className="flex items-center justify-between mb-4">
-                <h2 className="text-[#a1a1a1] text-lg font-normal font-inter">My Expenses</h2>
+                <h2 className="text-ink-secondary text-lg font-normal font-inter">My Expenses</h2>
                 <TimeRangeDropdown />
               </div>
               <ExpensesGauge />
             </div>
 
             {/* My Finance — col 2, row 1 */}
-            <div className="bg-[#1d1d1d] rounded-[7px] p-6 shadow-[0_4.3px_5px_rgba(176,176,176,0.05)]">
+            <div className="bg-surface-alt rounded-card p-6 shadow-card">
               <div className="flex items-center justify-between mb-4">
-                <h2 className="text-[#a1a1a1] text-lg font-normal font-inter">My Finance</h2>
+                <h2 className="text-ink-secondary text-lg font-normal font-inter">My Finance</h2>
                 <TimeRangeDropdown />
               </div>
               <FinanceChart />

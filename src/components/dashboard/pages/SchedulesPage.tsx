@@ -20,12 +20,12 @@ const upcoming = [
 ];
 
 const typeColor: Record<string, string> = {
-  Meeting: "text-[#28a263] bg-[#28a263]/10",
+  Meeting: "text-brand bg-brand/10",
   Review: "text-[#f59e0b] bg-[#f59e0b]/10",
   Call: "text-[#8b5cf6] bg-[#8b5cf6]/10",
-  Planning: "text-[#28a263] bg-[#28a263]/10",
-  Report: "text-[#ff4e3c] bg-[#ff4e3c]/10",
-  Event: "text-[#a1a1a1] bg-white/5",
+  Planning: "text-brand bg-brand/10",
+  Report: "text-danger bg-danger/10",
+  Event: "text-ink-secondary bg-white/5",
   Demo: "text-[#8b5cf6] bg-[#8b5cf6]/10",
   Launch: "text-[#f59e0b] bg-[#f59e0b]/10",
 };
@@ -67,9 +67,9 @@ const SchedulesPage: React.FC = () => {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-white text-xl font-semibold font-inter">Schedules</h1>
-          <p className="text-[#a1a1a1] text-[12.8px] font-inter mt-0.5">Manage your calendar and appointments</p>
+          <p className="text-ink-secondary text-[12.8px] font-inter mt-0.5">Manage your calendar and appointments</p>
         </div>
-        <button className="flex items-center gap-2 bg-[#28a263] hover:bg-[#23935a] transition-colors text-white text-[12px] font-inter font-medium px-4 py-2 rounded-[7px]">
+        <button className="flex items-center gap-2 bg-brand hover:bg-brand/90 transition-colors text-white text-[12px] font-inter font-medium px-4 py-2 rounded-card">
           <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
           </svg>
@@ -85,8 +85,8 @@ const SchedulesPage: React.FC = () => {
           { label: "Upcoming", value: "31", icon: "🗓" },
           { label: "Completed", value: "142", icon: "✅" },
         ].map((s) => (
-          <div key={s.label} className="bg-[#1b1b1b] rounded-[7px] p-4 shadow-[0_4.3px_5px_rgba(176,176,176,0.05)]">
-            <p className="text-[#a1a1a1] text-[11px] font-inter mb-2">{s.label}</p>
+          <div key={s.label} className="bg-surface-card rounded-card p-4 shadow-card">
+            <p className="text-ink-secondary text-[11px] font-inter mb-2">{s.label}</p>
             <p className="text-white text-2xl font-semibold font-inter">{s.value}</p>
           </div>
         ))}
@@ -94,9 +94,9 @@ const SchedulesPage: React.FC = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {/* Mini Calendar */}
-        <div className="bg-[#1b1b1b] rounded-[7px] p-5 shadow-[0_4.3px_5px_rgba(176,176,176,0.05)]">
+        <div className="bg-surface-card rounded-card p-5 shadow-card">
           <div className="flex items-center justify-between mb-4">
-            <button onClick={prevMonth} className="text-[#a1a1a1] hover:text-white p-1">
+            <button onClick={prevMonth} className="text-ink-secondary hover:text-white p-1">
               <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
               </svg>
@@ -104,7 +104,7 @@ const SchedulesPage: React.FC = () => {
             <span className="text-white text-[13px] font-inter font-medium">
               {MONTHS[currentMonth]} {currentYear}
             </span>
-            <button onClick={nextMonth} className="text-[#a1a1a1] hover:text-white p-1">
+            <button onClick={nextMonth} className="text-ink-secondary hover:text-white p-1">
               <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
               </svg>
@@ -114,7 +114,7 @@ const SchedulesPage: React.FC = () => {
           {/* Day headers */}
           <div className="grid grid-cols-7 mb-2">
             {DAYS.map((d) => (
-              <div key={d} className="text-center text-[#5f6868] text-[10px] font-inter py-1">{d}</div>
+              <div key={d} className="text-center text-ink-muted text-[10px] font-inter py-1">{d}</div>
             ))}
           </div>
 
@@ -127,10 +127,10 @@ const SchedulesPage: React.FC = () => {
                     onClick={() => setSelectedDay(cell as number)}
                     className={`w-7 h-7 rounded-full text-[11px] font-inter transition-colors ${
                       isToday(cell as number)
-                        ? "bg-[#28a263] text-white"
+                        ? "bg-brand text-white"
                         : selectedDay === cell
                         ? "bg-white/10 text-white"
-                        : "text-[#a1a1a1] hover:text-white hover:bg-white/5"
+                        : "text-ink-secondary hover:text-white hover:bg-white/5"
                     }`}
                   >
                     {cell}
@@ -149,17 +149,17 @@ const SchedulesPage: React.FC = () => {
             ].map((l) => (
               <div key={l.label} className="flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full" style={{ backgroundColor: l.color }} />
-                <span className="text-[#a1a1a1] text-[10px] font-inter">{l.label}</span>
+                <span className="text-ink-secondary text-[10px] font-inter">{l.label}</span>
               </div>
             ))}
           </div>
         </div>
 
         {/* Today's Timeline */}
-        <div className="lg:col-span-2 bg-[#1d1d1d] rounded-[7px] p-5 shadow-[0_4.3px_5px_rgba(176,176,176,0.05)]">
+        <div className="lg:col-span-2 bg-surface-alt rounded-card p-5 shadow-card">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-[#a1a1a1] text-sm font-inter">Today's Schedule</h2>
-            <span className="text-[#28a263] text-[10px] font-plus-jakarta border border-[#28a263]/30 rounded px-2 py-0.5">
+            <h2 className="text-ink-secondary text-sm font-inter">Today's Schedule</h2>
+            <span className="text-brand text-[10px] font-plus-jakarta border border-brand/30 rounded px-2 py-0.5">
               {MONTHS[today.getMonth()]} {today.getDate()}
             </span>
           </div>
@@ -168,7 +168,7 @@ const SchedulesPage: React.FC = () => {
             {events.map((ev) => (
               <div
                 key={ev.id}
-                className="flex items-start gap-3 p-3 bg-[#1b1b1b] rounded-[7px] hover:bg-white/[0.03] transition-colors"
+                className="flex items-start gap-3 p-3 bg-surface-card rounded-card hover:bg-white/[0.03] transition-colors"
               >
                 <div
                   className="w-1 self-stretch rounded-full shrink-0 mt-0.5"
@@ -182,11 +182,11 @@ const SchedulesPage: React.FC = () => {
                     </span>
                   </div>
                   <div className="flex items-center gap-3 mt-1">
-                    <span className="text-[#5f6868] text-[10.5px] font-inter">{ev.time}</span>
-                    <span className="text-[#5f6868] text-[10.5px] font-inter">·</span>
-                    <span className="text-[#5f6868] text-[10.5px] font-inter">{ev.duration}</span>
-                    <span className="text-[#5f6868] text-[10.5px] font-inter">·</span>
-                    <span className="text-[#a1a1a1] text-[10.5px] font-inter">{ev.participants} participants</span>
+                    <span className="text-ink-muted text-[10.5px] font-inter">{ev.time}</span>
+                    <span className="text-ink-muted text-[10.5px] font-inter">·</span>
+                    <span className="text-ink-muted text-[10.5px] font-inter">{ev.duration}</span>
+                    <span className="text-ink-muted text-[10.5px] font-inter">·</span>
+                    <span className="text-ink-secondary text-[10.5px] font-inter">{ev.participants} participants</span>
                   </div>
                 </div>
               </div>
@@ -196,17 +196,17 @@ const SchedulesPage: React.FC = () => {
       </div>
 
       {/* Upcoming Events */}
-      <div className="bg-[#1b1b1b] rounded-[7px] p-5 shadow-[0_4.3px_5px_rgba(176,176,176,0.05)]">
-        <h2 className="text-[#a1a1a1] text-sm font-inter mb-4">Upcoming Events</h2>
+      <div className="bg-surface-card rounded-card p-5 shadow-card">
+        <h2 className="text-ink-secondary text-sm font-inter mb-4">Upcoming Events</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
           {upcoming.map((ev) => (
             <div
               key={ev.date}
-              className="bg-[#1d1d1d] rounded-[7px] p-4 hover:bg-white/[0.03] transition-colors cursor-pointer"
+              className="bg-surface-alt rounded-card p-4 hover:bg-white/[0.03] transition-colors cursor-pointer"
             >
-              <p className="text-[#28a263] text-[10px] font-plus-jakarta font-semibold mb-1">{ev.date}</p>
+              <p className="text-brand text-[10px] font-plus-jakarta font-semibold mb-1">{ev.date}</p>
               <p className="text-white text-[12px] font-inter font-medium leading-snug">{ev.title}</p>
-              <p className="text-[#5f6868] text-[10px] font-inter mt-1">{ev.time}</p>
+              <p className="text-ink-muted text-[10px] font-inter mt-1">{ev.time}</p>
               <span className={`inline-block mt-2 text-[9.5px] font-inter px-1.5 py-0.5 rounded-full ${typeColor[ev.type]}`}>
                 {ev.type}
               </span>

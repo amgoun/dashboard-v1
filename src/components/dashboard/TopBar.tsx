@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import MessagesDropdown from "./MessagesDropdown";
 import NotificationsDropdown from "./NotificationsDropdown";
+import { colors } from "./theme";
 
 interface TopBarProps {
   onMenuOpen: () => void;
@@ -34,7 +35,7 @@ const TopBar: React.FC<TopBarProps> = ({ onMenuOpen, searchQuery, onSearchChange
     <header className="flex items-center justify-between px-4 sm:px-8 pt-6 pb-4 gap-3">
       {/* Hamburger — mobile only */}
       <button
-        className="lg:hidden text-[#a1a1a1] hover:text-white shrink-0"
+        className="lg:hidden text-ink-secondary hover:text-white shrink-0"
         onClick={onMenuOpen}
         aria-label="Open menu"
       >
@@ -48,20 +49,20 @@ const TopBar: React.FC<TopBarProps> = ({ onMenuOpen, searchQuery, onSearchChange
         <h1 className="text-white text-lg sm:text-xl font-semibold font-inter leading-tight tracking-[-0.02em] truncate">
           Welcome back, Jenny
         </h1>
-        <p className="text-[#a1a1a1] text-[12.8px] font-normal font-inter tracking-[-0.02em]">
+        <p className="text-ink-secondary text-[12.8px] font-normal font-inter tracking-[-0.02em]">
           Hey jenny, what's happening!
         </p>
       </div>
 
       {/* Search */}
       <div
-        className="hidden sm:flex items-center bg-[#1d1d1d] rounded-[7px] px-4 py-2 w-[200px] xl:w-[306px] gap-2 shrink-0 focus-within:ring-1 focus-within:ring-[#28a263] transition-all cursor-text"
+        className="hidden sm:flex items-center bg-surface-alt rounded-card px-4 py-2 w-[200px] xl:w-[306px] gap-2 shrink-0 focus-within:ring-1 focus-within:ring-brand transition-all cursor-text"
         onClick={() => inputRef.current?.focus()}
       >
         <svg
           className="w-3.5 h-3.5 shrink-0 opacity-50"
           fill="none"
-          stroke={searchQuery ? "#28a263" : "white"}
+          stroke={searchQuery ? colors.brand : "white"}
           strokeWidth={2}
           viewBox="0 0 24 24"
         >
@@ -74,12 +75,12 @@ const TopBar: React.FC<TopBarProps> = ({ onMenuOpen, searchQuery, onSearchChange
           value={searchQuery}
           onChange={(e) => onSearchChange(e.target.value)}
           placeholder="Search for something..."
-          className="flex-1 bg-transparent text-white text-[11.2px] font-normal font-inter outline-none placeholder:text-[#a1a1a1] min-w-0"
+          className="flex-1 bg-transparent text-white text-[11.2px] font-normal font-inter outline-none placeholder:text-ink-secondary min-w-0"
         />
         {searchQuery && (
           <button
             onClick={() => onSearchChange("")}
-            className="text-[#5f6868] hover:text-white transition-colors shrink-0"
+            className="text-ink-muted hover:text-white transition-colors shrink-0"
             aria-label="Clear search"
           >
             <svg className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
@@ -97,14 +98,14 @@ const TopBar: React.FC<TopBarProps> = ({ onMenuOpen, searchQuery, onSearchChange
           <button
             onClick={() => toggle("messages")}
             className={`w-[35px] h-[36px] rounded-lg flex items-center justify-center transition-colors ${
-              openPanel === "messages" ? "bg-[#28a263]/20 ring-1 ring-[#28a263]/40" : "bg-[#1a1a1a] hover:bg-[#242424]"
+              openPanel === "messages" ? "bg-brand/20 ring-1 ring-brand/40" : "bg-surface-input hover:bg-surface-hover"
             }`}
             aria-label="Messages"
           >
             <svg
               className="w-[18px] h-[18px]"
               fill="none"
-              stroke={openPanel === "messages" ? "#28a263" : "#a1a1a1"}
+              stroke={openPanel === "messages" ? colors.brand : colors.inkSecondary}
               strokeWidth={1.8}
               viewBox="0 0 24 24"
             >
@@ -119,21 +120,21 @@ const TopBar: React.FC<TopBarProps> = ({ onMenuOpen, searchQuery, onSearchChange
           <button
             onClick={() => toggle("notifications")}
             className={`w-[35px] h-[36px] rounded-lg flex items-center justify-center transition-colors ${
-              openPanel === "notifications" ? "bg-[#ff4e3c]/10 ring-1 ring-[#ff4e3c]/30" : "bg-[#1a1a1a] hover:bg-[#242424]"
+              openPanel === "notifications" ? "bg-danger/10 ring-1 ring-danger/30" : "bg-surface-input hover:bg-surface-hover"
             }`}
             aria-label="Notifications"
           >
             <svg
               className="w-[18px] h-[18px]"
               fill="none"
-              stroke={openPanel === "notifications" ? "#ff4e3c" : "#a1a1a1"}
+              stroke={openPanel === "notifications" ? colors.danger : colors.inkSecondary}
               strokeWidth={1.8}
               viewBox="0 0 24 24"
             >
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
             </svg>
             {/* Unread badge */}
-            <span className="absolute top-1 right-1 w-[12px] h-[12px] bg-[#ff4e3c] rounded-full flex items-center justify-center">
+            <span className="absolute top-1 right-1 w-[12px] h-[12px] bg-danger rounded-full flex items-center justify-center">
               <span className="text-white text-[8px] font-normal font-inter p-1">2</span>
             </span>
           </button>
@@ -141,7 +142,7 @@ const TopBar: React.FC<TopBarProps> = ({ onMenuOpen, searchQuery, onSearchChange
         </div>
 
         {/* Avatar */}
-        <div className="w-[35px] h-[36px] bg-[#1a1a1a] rounded-lg overflow-hidden">
+        <div className="w-[35px] h-[36px] bg-surface-input rounded-lg overflow-hidden">
           <img
             src="https://storage.googleapis.com/tempo-image-previews/figma-exports%2Fuser_35fimNlXhOium67GLLJVWNU4rKV-1776729518657-node-3%3A828-1776729517118.png"
             alt="User avatar"

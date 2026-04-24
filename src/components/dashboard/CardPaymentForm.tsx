@@ -98,7 +98,7 @@ const NetworkIcon: React.FC<{ network: ReturnType<typeof detectNetwork> }> = ({ 
 
   if (network === "amex") {
     return (
-      <span className="text-[#28a263] text-[9px] font-bold font-inter shrink-0 tracking-wider">
+      <span className="text-brand text-[9px] font-bold font-inter shrink-0 tracking-wider">
         AMEX
       </span>
     );
@@ -118,10 +118,10 @@ interface FieldProps {
 
 const Field: React.FC<FieldProps> = ({ label, error, touched, children }) => (
   <div className="flex flex-col gap-1.5">
-    <p className="text-[#a1a1a1] text-[13px] font-normal font-inter">{label}</p>
+    <p className="text-ink-secondary text-[13px] font-normal font-inter">{label}</p>
     {children}
     {touched && error && (
-      <p className="text-[#ff4e3c] text-[10px] font-inter leading-tight">{error}</p>
+      <p className="text-danger text-[10px] font-inter leading-tight">{error}</p>
     )}
   </div>
 );
@@ -179,7 +179,7 @@ const CardPaymentForm: React.FC = () => {
   }
 
   const inputBase =
-    "w-full bg-[#303030] rounded-md px-4 py-2.5 text-white text-[12.8px] font-normal font-inter outline-none transition-all placeholder:text-[#5f5f5f] focus:ring-1";
+    "w-full bg-surface-icon rounded-md px-4 py-2.5 text-white text-[12.8px] font-normal font-inter outline-none transition-all placeholder:text-ink-muted focus:ring-1";
 
   return (
     <div className="flex flex-col gap-4 mt-1">
@@ -187,10 +187,10 @@ const CardPaymentForm: React.FC = () => {
       {/* Card Number */}
       <Field label="Card Number" error={errors.cardNumber} touched={touched.cardNumber}>
         <div
-          className={`flex items-center gap-2 bg-[#303030] rounded-md px-4 py-2.5 transition-all
+          className={`flex items-center gap-2 bg-surface-icon rounded-md px-4 py-2.5 transition-all
             focus-within:ring-1 ${touched.cardNumber && errors.cardNumber
-              ? "ring-1 ring-[#ff4e3c]"
-              : "focus-within:ring-[#28a263]"
+              ? "ring-1 ring-danger"
+              : "focus-within:ring-brand"
             }`}
         >
           <input
@@ -201,7 +201,7 @@ const CardPaymentForm: React.FC = () => {
             onChange={handleCardNumber}
             onBlur={() => handleBlur("cardNumber")}
             maxLength={19}
-            className="flex-1 bg-transparent text-white text-[12.8px] font-normal font-inter outline-none placeholder:text-[#5f5f5f] min-w-0"
+            className="flex-1 bg-transparent text-white text-[12.8px] font-normal font-inter outline-none placeholder:text-ink-muted min-w-0"
           />
           <NetworkIcon network={network} />
         </div>
@@ -219,18 +219,18 @@ const CardPaymentForm: React.FC = () => {
             onBlur={() => handleBlur("expiry")}
             maxLength={5}
             className={`${inputBase} ${touched.expiry && errors.expiry
-              ? "ring-1 ring-[#ff4e3c]"
-              : "focus:ring-[#28a263]"
+              ? "ring-1 ring-danger"
+              : "focus:ring-brand"
               }`}
           />
         </Field>
 
         <Field label="CVV" error={errors.cvv} touched={touched.cvv}>
           <div
-            className={`flex items-center bg-[#303030] rounded-md px-4 py-2.5 transition-all
+            className={`flex items-center bg-surface-icon rounded-md px-4 py-2.5 transition-all
               focus-within:ring-1 ${touched.cvv && errors.cvv
-                ? "ring-1 ring-[#ff4e3c]"
-                : "focus-within:ring-[#28a263]"
+                ? "ring-1 ring-danger"
+                : "focus-within:ring-brand"
               }`}
           >
             <input
@@ -241,12 +241,12 @@ const CardPaymentForm: React.FC = () => {
               onChange={handleCvv}
               onBlur={() => handleBlur("cvv")}
               maxLength={4}
-              className="flex-1 bg-transparent text-white text-[12.8px] font-normal font-inter outline-none placeholder:text-[#5f5f5f] min-w-0 w-0"
+              className="flex-1 bg-transparent text-white text-[12.8px] font-normal font-inter outline-none placeholder:text-ink-muted min-w-0 w-0"
             />
             <button
               type="button"
               onClick={() => setShowCvv((s) => !s)}
-              className="text-[#5f6868] hover:text-white transition-colors text-[10px] shrink-0 ml-1"
+              className="text-ink-muted hover:text-white transition-colors text-[10px] shrink-0 ml-1"
               tabIndex={-1}
               aria-label={showCvv ? "Hide CVV" : "Show CVV"}
             >
@@ -267,13 +267,13 @@ const CardPaymentForm: React.FC = () => {
 
       {/* Status feedback */}
       {status === "success" && (
-        <div className="bg-[#28a263]/15 border border-[#28a263]/40 rounded-md px-4 py-2.5 text-center">
-          <p className="text-[#28a263] text-[11px] font-inter">Payment sent successfully!</p>
+        <div className="bg-brand/15 border border-brand/40 rounded-md px-4 py-2.5 text-center">
+          <p className="text-brand text-[11px] font-inter">Payment sent successfully!</p>
         </div>
       )}
       {status === "draft" && (
-        <div className="bg-[#303030] border border-white/10 rounded-md px-4 py-2.5 text-center">
-          <p className="text-[#a1a1a1] text-[11px] font-inter">Draft saved.</p>
+        <div className="bg-surface-icon border border-white/10 rounded-md px-4 py-2.5 text-center">
+          <p className="text-ink-secondary text-[11px] font-inter">Draft saved.</p>
         </div>
       )}
 
@@ -283,14 +283,14 @@ const CardPaymentForm: React.FC = () => {
           type="button"
           onClick={handleSend}
           className={`flex-1 text-white text-[10.1px] font-normal font-inter py-2.5 rounded-[5px] transition-opacity
-            ${isValid ? "bg-[#28a263] hover:opacity-90" : "bg-[#28a263]/50 cursor-not-allowed"}`}
+            ${isValid ? "bg-brand hover:opacity-90" : "bg-brand/50 cursor-not-allowed"}`}
         >
           Send Money
         </button>
         <button
           type="button"
           onClick={handleDraft}
-          className="flex-1 bg-[#303030] hover:bg-[#3a3a3a] text-white text-[10.1px] font-normal font-inter py-2.5 rounded-[5px] transition-colors"
+          className="flex-1 bg-surface-icon hover:bg-surface-hover text-white text-[10.1px] font-normal font-inter py-2.5 rounded-[5px] transition-colors"
         >
           Save Draft
         </button>

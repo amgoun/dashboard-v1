@@ -8,15 +8,15 @@ const avatars = [
 
 const QuickTransfer: React.FC = () => (
   <div className="flex items-center gap-2 mt-2">
-    <div className="w-[37px] h-[37px] rounded-lg border border-[#16ab5e] flex items-center justify-center shrink-0">
-      <span className="text-[#16ab5e] text-[19px] font-light font-inter leading-none">+</span>
+    <div className="w-[37px] h-[37px] rounded-lg border border-brand flex items-center justify-center shrink-0">
+      <span className="text-brand text-[19px] font-light font-inter leading-none">+</span>
     </div>
     {avatars.map((src, i) => (
-      <div key={i} className="w-[37px] h-[37px] bg-[#303030] rounded-lg overflow-hidden shrink-0">
+      <div key={i} className="w-[37px] h-[37px] bg-surface-icon rounded-lg overflow-hidden shrink-0">
         <img src={src} alt="Contact avatar" className="w-full h-full object-cover" />
       </div>
     ))}
-    <div className="w-[14px] h-[14px] bg-[#303030] rounded-full flex items-center justify-center shrink-0">
+    <div className="w-[14px] h-[14px] bg-surface-icon rounded-full flex items-center justify-center shrink-0">
       <img
         src="https://storage.googleapis.com/tempo-image-previews/figma-exports%2Fuser_35fimNlXhOium67GLLJVWNU4rKV-1776729519629-node-3%3A844-1776729518187.png"
         alt="more"

@@ -100,6 +100,61 @@
       @apply border-border;
     }
     body {
-      @apply bg-background text-foreground;
+      @apply bg-background text-foreground font-inter;
+    }
+  }
+
+  @layer components {
+    /* ── Cards ─────────────────────────────────────────────────── */
+    .card {
+      @apply bg-surface-card rounded-card shadow-card;
+    }
+    .card-alt {
+      @apply bg-surface-alt rounded-card shadow-card;
+    }
+
+    /* ── Card header row ────────────────────────────────────────── */
+    .card-header {
+      @apply flex items-center justify-between mb-4;
+    }
+    .card-title {
+      @apply text-ink-secondary text-lg font-normal;
+    }
+
+    /* ── Page grid wrapper ──────────────────────────────────────── */
+    .page-grid {
+      @apply grid grid-cols-1 lg:grid-cols-3 gap-4 px-4 sm:px-8 pb-8 flex-1;
+    }
+
+    /* ── Icon button (top-bar actions) ──────────────────────────── */
+    .icon-btn {
+      @apply w-[35px] h-[36px] rounded-lg flex items-center justify-center transition-colors bg-surface-input hover:bg-surface-hover;
+    }
+
+    /* ── Dropdown panel ─────────────────────────────────────────── */
+    .dropdown-panel {
+      @apply absolute right-0 top-full mt-1 overflow-hidden rounded-md border border-white/10 bg-surface-card shadow-dropdown-sm z-40;
+    }
+    .dropdown-item {
+      @apply block w-full px-3 py-2 text-left text-[11px] text-ink-secondary hover:bg-white/[0.03] hover:text-white transition-colors;
+    }
+    .dropdown-item-brand {
+      @apply block w-full px-3 py-2 text-left text-[11px] text-brand hover:bg-brand/10 transition-colors;
+    }
+
+    /* ── Amount badge ───────────────────────────────────────────── */
+    .amount-badge {
+      @apply bg-surface-hover rounded px-2 py-1 inline-block text-[11.2px];
+    }
+    .amount-positive {
+      @apply text-brand;
+    }
+    .amount-negative {
+      @apply text-danger;
+    }
+
+    /* ── Border separator ───────────────────────────────────────── */
+    .divider {
+      @apply border-t border-white/10;
     }
   }

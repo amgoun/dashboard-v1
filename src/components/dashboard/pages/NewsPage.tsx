@@ -102,10 +102,10 @@ const articles = [
 ];
 
 const catColor: Record<string, string> = {
-  Finance: "text-[#28a263] bg-[#28a263]/10",
+  Finance: "text-brand bg-brand/10",
   Tech: "text-[#8b5cf6] bg-[#8b5cf6]/10",
   Business: "text-[#f59e0b] bg-[#f59e0b]/10",
-  Markets: "text-[#ff4e3c] bg-[#ff4e3c]/10",
+  Markets: "text-danger bg-danger/10",
 };
 
 const NewsPage: React.FC = () => {
@@ -135,7 +135,7 @@ const NewsPage: React.FC = () => {
       <div className="flex items-center justify-between flex-wrap gap-3">
         <div>
           <h1 className="text-white text-xl font-semibold font-inter">News</h1>
-          <p className="text-[#a1a1a1] text-[12.8px] font-inter mt-0.5">Latest in finance, tech, and markets</p>
+          <p className="text-ink-secondary text-[12.8px] font-inter mt-0.5">Latest in finance, tech, and markets</p>
         </div>
         {/* Category chips */}
         <div className="flex items-center gap-1.5 flex-wrap">
@@ -145,8 +145,8 @@ const NewsPage: React.FC = () => {
               onClick={() => setActiveCategory(cat)}
               className={`px-3 py-1 rounded text-[11px] font-inter transition-colors ${
                 activeCategory === cat
-                  ? "bg-[#28a263] text-white"
-                  : "text-[#a1a1a1] hover:text-white bg-white/5"
+                  ? "bg-brand text-white"
+                  : "text-ink-secondary hover:text-white bg-white/5"
               }`}
             >
               {cat}
@@ -157,7 +157,7 @@ const NewsPage: React.FC = () => {
 
       {/* Featured article */}
       {(activeCategory === "All" || activeCategory === featured.category as NewsCategory) && (
-        <div className="bg-[#1b1b1b] rounded-[7px] p-6 shadow-[0_4.3px_5px_rgba(176,176,176,0.05)] relative overflow-hidden">
+        <div className="bg-surface-card rounded-card p-6 shadow-card relative overflow-hidden">
           {/* Decorative gradient blob */}
           <div
             className="absolute top-0 right-0 w-64 h-64 rounded-full opacity-5 pointer-events-none"
@@ -169,24 +169,24 @@ const NewsPage: React.FC = () => {
               <span className={`text-[10px] font-inter px-2 py-0.5 rounded-full font-medium ${catColor[featured.category]}`}>
                 {featured.category}
               </span>
-              <span className="text-[#28a263] text-[10px] font-plus-jakarta border border-[#28a263]/30 rounded px-2 py-0.5">
+              <span className="text-brand text-[10px] font-plus-jakarta border border-brand/30 rounded px-2 py-0.5">
                 Featured
               </span>
             </div>
             <h2 className="text-white text-lg font-semibold font-inter leading-snug mb-3">
               {featured.title}
             </h2>
-            <p className="text-[#a1a1a1] text-[12.5px] font-inter leading-relaxed mb-4">
+            <p className="text-ink-secondary text-[12.5px] font-inter leading-relaxed mb-4">
               {featured.excerpt}
             </p>
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="w-7 h-7 rounded-full bg-[#28a263]/20 flex items-center justify-center text-[#28a263] text-[10px] font-inter font-semibold">
+                <div className="w-7 h-7 rounded-full bg-brand/20 flex items-center justify-center text-brand text-[10px] font-inter font-semibold">
                   {featured.author.split(" ").map((n) => n[0]).join("")}
                 </div>
                 <div>
                   <p className="text-white text-[11px] font-inter font-medium">{featured.author}</p>
-                  <p className="text-[#5f6868] text-[10px] font-inter">{featured.date} · {featured.readTime} read</p>
+                  <p className="text-ink-muted text-[10px] font-inter">{featured.date} · {featured.readTime} read</p>
                 </div>
               </div>
               <div className="flex items-center gap-2">
@@ -204,7 +204,7 @@ const NewsPage: React.FC = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
                   </svg>
                 </button>
-                <button className="flex items-center gap-1.5 bg-[#28a263] hover:bg-[#23935a] transition-colors text-white text-[11px] font-inter px-3 py-1.5 rounded-[7px]">
+                <button className="flex items-center gap-1.5 bg-brand hover:bg-brand/90 transition-colors text-white text-[11px] font-inter px-3 py-1.5 rounded-card">
                   Read More
                   <svg className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
@@ -221,7 +221,7 @@ const NewsPage: React.FC = () => {
         {filtered.map((article) => (
           <div
             key={article.id}
-            className="bg-[#1b1b1b] rounded-[7px] p-4 shadow-[0_4.3px_5px_rgba(176,176,176,0.05)] hover:bg-[#1f1f1f] transition-colors group cursor-pointer flex flex-col"
+            className="bg-surface-card rounded-card p-4 shadow-card hover:bg-surface-elevated transition-colors group cursor-pointer flex flex-col"
           >
             {/* Color accent bar */}
             <div className="h-0.5 w-full rounded-full mb-4" style={{ backgroundColor: article.color }} />
@@ -249,16 +249,16 @@ const NewsPage: React.FC = () => {
             <h3 className="text-white text-[12.5px] font-inter font-medium leading-snug mb-2 flex-1">
               {article.title}
             </h3>
-            <p className="text-[#5f6868] text-[10.5px] font-inter leading-relaxed line-clamp-2 mb-3">
+            <p className="text-ink-muted text-[10.5px] font-inter leading-relaxed line-clamp-2 mb-3">
               {article.excerpt}
             </p>
 
             <div className="flex items-center justify-between pt-2 border-t border-white/5">
-              <span className="text-[#a1a1a1] text-[10px] font-inter">{article.author}</span>
+              <span className="text-ink-secondary text-[10px] font-inter">{article.author}</span>
               <div className="flex items-center gap-1.5">
-                <span className="text-[#5f6868] text-[9.5px] font-inter">{article.date}</span>
-                <span className="text-[#5f6868] text-[9.5px]">·</span>
-                <span className="text-[#5f6868] text-[9.5px] font-inter">{article.readTime}</span>
+                <span className="text-ink-muted text-[9.5px] font-inter">{article.date}</span>
+                <span className="text-ink-muted text-[9.5px]">·</span>
+                <span className="text-ink-muted text-[9.5px] font-inter">{article.readTime}</span>
               </div>
             </div>
           </div>
@@ -267,7 +267,7 @@ const NewsPage: React.FC = () => {
 
       {filtered.length === 0 && (
         <div className="flex items-center justify-center py-20">
-          <p className="text-[#5f6868] text-[12px] font-inter">No articles in this category yet.</p>
+          <p className="text-ink-muted text-[12px] font-inter">No articles in this category yet.</p>
         </div>
       )}
     </div>

@@ -22,11 +22,11 @@ const TransactionsTable: React.FC<TransactionsTableProps> = ({ searchQuery = "" 
     : transactions;
 
   return (
-    <div className="w-full h-full bg-[#1d1d1d] rounded-lg p-4 shadow-[0_4.3px_5px_rgba(176,176,176,0.05)] overflow-auto">
+    <div className="w-full h-full bg-surface-alt rounded-lg p-4 shadow-card overflow-auto">
       <div className="flex items-center justify-between mb-4 gap-2 flex-wrap">
-        <h2 className="text-[#a1a1a1] text-base font-normal font-inter">My Transaction</h2>
+        <h2 className="text-ink-secondary text-base font-normal font-inter">My Transaction</h2>
         <div className="flex items-center gap-3">
-          <span className="text-[#5f6868] text-[9.6px] font-normal font-inter hidden sm:block">
+          <span className="text-ink-muted text-[9.6px] font-normal font-inter hidden sm:block">
             Transaction Overview
           </span>
           <TimeRangeDropdown />
@@ -37,10 +37,10 @@ const TransactionsTable: React.FC<TransactionsTableProps> = ({ searchQuery = "" 
         <table className="w-full min-w-[400px]">
           <thead>
             <tr className="border-b border-white/5">
-              <th className="text-left text-[#5f6868] text-[12.8px] font-normal font-inter pb-2 pr-4">Date</th>
-              <th className="text-left text-[#5f6868] text-[12.8px] font-normal font-inter pb-2 pr-4">Transaction Details</th>
-              <th className="text-left text-[#5f6868] text-[12.8px] font-normal font-inter pb-2 pr-4 hidden sm:table-cell">Transaction ID</th>
-              <th className="text-left text-[#5f6868] text-[12.8px] font-normal font-inter pb-2">Total Amount</th>
+              <th className="text-left text-ink-muted text-[12.8px] font-normal font-inter pb-2 pr-4">Date</th>
+              <th className="text-left text-ink-muted text-[12.8px] font-normal font-inter pb-2 pr-4">Transaction Details</th>
+              <th className="text-left text-ink-muted text-[12.8px] font-normal font-inter pb-2 pr-4 hidden sm:table-cell">Transaction ID</th>
+              <th className="text-left text-ink-muted text-[12.8px] font-normal font-inter pb-2">Total Amount</th>
               <th className="pb-2" />
             </tr>
           </thead>
@@ -50,9 +50,9 @@ const TransactionsTable: React.FC<TransactionsTableProps> = ({ searchQuery = "" 
             ) : (
               <tr>
                 <td colSpan={5} className="py-10 text-center">
-                  <p className="text-[#5f6868] text-[12px] font-inter">
+                  <p className="text-ink-muted text-[12px] font-inter">
                     No transactions match{" "}
-                    <span className="text-[#a1a1a1]">"{searchQuery}"</span>
+                    <span className="text-ink-secondary">"{searchQuery}"</span>
                   </p>
                 </td>
               </tr>

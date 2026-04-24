@@ -1,4 +1,5 @@
 import React from "react";
+import { colors } from "./theme";
 import {
   AreaChart,
   Area,
@@ -30,7 +31,7 @@ const CustomTooltip: React.FC<{
 }> = ({ active, payload }) => {
   if (!active || !payload?.length) return null;
   return (
-    <div className="bg-[#1f1f1f] border border-white/10 rounded px-3 py-2 text-center shadow-lg">
+    <div className="bg-surface-elevated border border-white/10 rounded px-3 py-2 text-center shadow-lg">
       <p className="text-white text-[13px] font-bold font-inter">$4,100</p>
       <p className="text-white/60 text-[10px] font-inter mt-0.5">Revenue from 28 sales</p>
     </div>
@@ -46,7 +47,7 @@ const CustomDot: React.FC<{
     cy={cy}
     r={4}
     fill="white"
-    stroke="#28a263"
+    stroke={colors.brand}
     strokeWidth={2}
   />
 );
@@ -57,8 +58,8 @@ const FinanceChart: React.FC = () => (
       <AreaChart data={data} margin={{ top: 10, right: 8, left: -16, bottom: 0 }}>
         <defs>
           <linearGradient id="financeGradient" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%"   stopColor="#28a263" stopOpacity={0.25} />
-            <stop offset="100%" stopColor="#28a263" stopOpacity={0} />
+            <stop offset="0%"   stopColor={colors.brand} stopOpacity={0.25} />
+            <stop offset="100%" stopColor={colors.brand} stopOpacity={0} />
           </linearGradient>
         </defs>
 
@@ -70,7 +71,7 @@ const FinanceChart: React.FC = () => (
 
         <XAxis
           dataKey="month"
-          tick={{ fill: "#a1a1a1", fontSize: 9, fontFamily: "Inter" }}
+          tick={{ fill: colors.inkSecondary, fontSize: 9, fontFamily: "Inter" }}
           axisLine={false}
           tickLine={false}
           interval={0}
@@ -86,13 +87,13 @@ const FinanceChart: React.FC = () => (
 
         <Tooltip
           content={<CustomTooltip />}
-          cursor={{ stroke: "#28a263", strokeWidth: 1, strokeDasharray: "4 2" }}
+          cursor={{ stroke: colors.brand, strokeWidth: 1, strokeDasharray: "4 2" }}
         />
 
         {/* Vertical reference line at the tooltip point */}
         <ReferenceLine
           x="Jul"
-          stroke="#28a263"
+          stroke={colors.brand}
           strokeWidth={1}
           strokeOpacity={0.7}
           strokeDasharray="4 2"
@@ -101,16 +102,16 @@ const FinanceChart: React.FC = () => (
         <Area
           type="monotone"
           dataKey="value"
-          stroke="#28a263"
+          stroke={colors.brand}
           strokeWidth={2}
           fill="url(#financeGradient)"
           dot={<CustomDot />}
-          activeDot={{ r: 5, fill: "white", stroke: "#28a263", strokeWidth: 2 }}
+          activeDot={{ r: 5, fill: "white", stroke: colors.brand, strokeWidth: 2 }}
         />
       </AreaChart>
     </ResponsiveContainer>
 
-    <p className="text-[#a1a1a1] text-[11px] font-normal font-inter text-center mt-2">
+    <p className="text-ink-secondary text-[11px] font-normal font-inter text-center mt-2">
       Savings this month: +6.79%
     </p>
   </div>

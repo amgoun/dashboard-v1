@@ -56,8 +56,8 @@ const kpis = [
 const ChartTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
     return (
-      <div className="bg-[#1b1b1b] border border-white/10 rounded-lg px-3 py-2 text-[11px] font-inter space-y-1">
-        <p className="text-[#5f6868]">{label}</p>
+      <div className="bg-surface-card border border-white/10 rounded-lg px-3 py-2 text-[11px] font-inter space-y-1">
+        <p className="text-ink-muted">{label}</p>
         {payload.map((p: any) => (
           <p key={p.name} style={{ color: p.color }}>
             {p.name}: <span className="font-semibold">${p.value.toLocaleString()}</span>
@@ -80,15 +80,15 @@ const AnalyticsPage: React.FC = () => {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-white text-xl font-semibold font-inter">Analytics</h1>
-          <p className="text-[#a1a1a1] text-[12.8px] font-inter mt-0.5">Performance overview and key metrics</p>
+          <p className="text-ink-secondary text-[12.8px] font-inter mt-0.5">Performance overview and key metrics</p>
         </div>
-        <div className="flex items-center gap-1 bg-[#1b1b1b] rounded-[7px] p-1">
+        <div className="flex items-center gap-1 bg-surface-card rounded-card p-1">
           {(["7D", "1M", "6M", "1Y"] as Range[]).map((r) => (
             <button
               key={r}
               onClick={() => setRange(r)}
               className={`px-3 py-1 rounded text-[11px] font-inter transition-colors ${
-                range === r ? "bg-[#28a263] text-white" : "text-[#a1a1a1] hover:text-white"
+                range === r ? "bg-brand text-white" : "text-ink-secondary hover:text-white"
               }`}
             >
               {r}
@@ -100,31 +100,31 @@ const AnalyticsPage: React.FC = () => {
       {/* KPIs */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {kpis.map((k) => (
-          <div key={k.label} className="bg-[#1b1b1b] rounded-[7px] p-4 shadow-[0_4.3px_5px_rgba(176,176,176,0.05)]">
-            <p className="text-[#a1a1a1] text-[11px] font-inter mb-1">{k.label}</p>
+          <div key={k.label} className="bg-surface-card rounded-card p-4 shadow-card">
+            <p className="text-ink-secondary text-[11px] font-inter mb-1">{k.label}</p>
             <p className="text-white text-2xl font-semibold font-inter">{k.value}</p>
             <div className="flex items-center gap-1.5 mt-1">
-              <span className={`text-[10px] font-inter font-medium ${k.up ? "text-[#28a263]" : "text-[#ff4e3c]"}`}>
+              <span className={`text-[10px] font-inter font-medium ${k.up ? "text-brand" : "text-danger"}`}>
                 {k.delta}
               </span>
-              <span className="text-[#5f6868] text-[10px] font-inter">{k.sub}</span>
+              <span className="text-ink-muted text-[10px] font-inter">{k.sub}</span>
             </div>
           </div>
         ))}
       </div>
 
       {/* Revenue chart */}
-      <div className="bg-[#1b1b1b] rounded-[7px] p-5 shadow-[0_4.3px_5px_rgba(176,176,176,0.05)]">
+      <div className="bg-surface-card rounded-card p-5 shadow-card">
         <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
-          <h2 className="text-[#a1a1a1] text-sm font-inter">Revenue vs Expenses</h2>
+          <h2 className="text-ink-secondary text-sm font-inter">Revenue vs Expenses</h2>
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-1.5">
-              <span className="w-3 h-0.5 bg-[#28a263] rounded-full" />
-              <span className="text-[#a1a1a1] text-[10px] font-inter">Revenue</span>
+              <span className="w-3 h-0.5 bg-brand rounded-full" />
+              <span className="text-ink-secondary text-[10px] font-inter">Revenue</span>
             </div>
             <div className="flex items-center gap-1.5">
               <span className="w-3 h-0.5 bg-[#5f6868] rounded-full" />
-              <span className="text-[#a1a1a1] text-[10px] font-inter">Expenses</span>
+              <span className="text-ink-secondary text-[10px] font-inter">Expenses</span>
             </div>
           </div>
         </div>
@@ -151,8 +151,8 @@ const AnalyticsPage: React.FC = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
         {/* Traffic Sources Donut */}
-        <div className="lg:col-span-2 bg-[#1b1b1b] rounded-[7px] p-5 shadow-[0_4.3px_5px_rgba(176,176,176,0.05)]">
-          <h2 className="text-[#a1a1a1] text-sm font-inter mb-4">Traffic Sources</h2>
+        <div className="lg:col-span-2 bg-surface-card rounded-card p-5 shadow-card">
+          <h2 className="text-ink-secondary text-sm font-inter mb-4">Traffic Sources</h2>
           <div className="flex items-center gap-4">
             <ResponsiveContainer width={130} height={130}>
               <PieChart>
@@ -175,7 +175,7 @@ const AnalyticsPage: React.FC = () => {
               {trafficData.map((item) => (
                 <div key={item.name} className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: item.color }} />
-                  <span className="text-[#a1a1a1] text-[11px] font-inter">{item.name}</span>
+                  <span className="text-ink-secondary text-[11px] font-inter">{item.name}</span>
                   <span className="text-white text-[11px] font-inter font-medium ml-auto">{item.value}%</span>
                 </div>
               ))}
@@ -184,9 +184,9 @@ const AnalyticsPage: React.FC = () => {
         </div>
 
         {/* Top Products */}
-        <div className="lg:col-span-3 bg-[#1d1d1d] rounded-[7px] p-5 shadow-[0_4.3px_5px_rgba(176,176,176,0.05)]">
+        <div className="lg:col-span-3 bg-surface-alt rounded-card p-5 shadow-card">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-[#a1a1a1] text-sm font-inter">Top Products by Sales</h2>
+            <h2 className="text-ink-secondary text-sm font-inter">Top Products by Sales</h2>
           </div>
 
           <div className="mb-4">
@@ -197,9 +197,9 @@ const AnalyticsPage: React.FC = () => {
                 <Tooltip
                   content={({ active, payload, label }) =>
                     active && payload?.length ? (
-                      <div className="bg-[#1b1b1b] border border-white/10 rounded px-2 py-1 text-[10px] font-inter">
-                        <p className="text-[#a1a1a1]">{label}</p>
-                        <p className="text-[#28a263] font-semibold">{payload[0].value} sales</p>
+                      <div className="bg-surface-card border border-white/10 rounded px-2 py-1 text-[10px] font-inter">
+                        <p className="text-ink-secondary">{label}</p>
+                        <p className="text-brand font-semibold">{payload[0].value} sales</p>
                       </div>
                     ) : null
                   }
@@ -213,9 +213,9 @@ const AnalyticsPage: React.FC = () => {
           <div className="space-y-2">
             {topProducts.map((p, i) => (
               <div key={p.name} className="flex items-center gap-3">
-                <span className="text-[#5f6868] text-[10px] font-inter w-4">{i + 1}</span>
-                <span className="text-[#a1a1a1] text-[11px] font-inter flex-1 truncate">{p.name}</span>
-                <span className="text-[#5f6868] text-[10px] font-inter">{p.sales} sales</span>
+                <span className="text-ink-muted text-[10px] font-inter w-4">{i + 1}</span>
+                <span className="text-ink-secondary text-[11px] font-inter flex-1 truncate">{p.name}</span>
+                <span className="text-ink-muted text-[10px] font-inter">{p.sales} sales</span>
                 <span className="text-white text-[11px] font-inter font-medium w-20 text-right">{p.revenue}</span>
               </div>
             ))}

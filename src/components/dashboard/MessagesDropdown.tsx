@@ -45,11 +45,11 @@ const messages: Message[] = [
 ];
 
 const MessagesDropdown: React.FC = () => (
-  <div className="absolute right-0 top-full mt-2 w-[300px] bg-[#1b1b1b] rounded-xl shadow-[0_8px_40px_rgba(0,0,0,0.4)] border border-white/5 z-50 overflow-hidden">
+  <div className="absolute right-0 top-full mt-2 w-[300px] bg-surface-card rounded-xl shadow-dropdown border border-white/5 z-50 overflow-hidden">
     {/* Header */}
     <div className="flex items-center justify-between px-4 py-3 border-b border-white/5">
       <h3 className="text-white text-[13px] font-semibold font-inter">Messages</h3>
-      <span className="bg-[#28a263]/20 text-[#28a263] text-[9px] font-inter font-medium px-2 py-0.5 rounded-full">
+      <span className="bg-brand/20 text-brand text-[9px] font-inter font-medium px-2 py-0.5 rounded-full">
         2 new
       </span>
     </div>
@@ -60,7 +60,7 @@ const MessagesDropdown: React.FC = () => (
         <li
           key={msg.id}
           className={`flex items-start gap-3 px-4 py-3 cursor-pointer transition-colors hover:bg-white/5 ${
-            msg.unread ? "bg-[#28a263]/5" : ""
+            msg.unread ? "bg-brand/5" : ""
           }`}
         >
           {/* Avatar */}
@@ -71,19 +71,19 @@ const MessagesDropdown: React.FC = () => (
               className="w-9 h-9 rounded-lg object-cover"
             />
             {msg.unread && (
-              <span className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-[#28a263] rounded-full border-2 border-[#1b1b1b]" />
+              <span className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-brand rounded-full border-2 border-surface-card" />
             )}
           </div>
 
           {/* Content */}
           <div className="flex-1 min-w-0">
             <div className="flex items-center justify-between gap-2">
-              <p className={`text-[12px] font-inter truncate ${msg.unread ? "text-white font-medium" : "text-[#a1a1a1]"}`}>
+              <p className={`text-[12px] font-inter truncate ${msg.unread ? "text-white font-medium" : "text-ink-secondary"}`}>
                 {msg.name}
               </p>
-              <span className="text-[#5f6868] text-[9px] font-inter shrink-0">{msg.time}</span>
+              <span className="text-ink-muted text-[9px] font-inter shrink-0">{msg.time}</span>
             </div>
-            <p className="text-[#5f6868] text-[10.5px] font-inter mt-0.5 truncate">{msg.preview}</p>
+            <p className="text-ink-muted text-[10.5px] font-inter mt-0.5 truncate">{msg.preview}</p>
           </div>
         </li>
       ))}
@@ -91,7 +91,7 @@ const MessagesDropdown: React.FC = () => (
 
     {/* Footer */}
     <div className="px-4 py-3 border-t border-white/5">
-      <button className="w-full text-center text-[#28a263] text-[11px] font-inter hover:text-[#3dbd76] transition-colors">
+      <button className="w-full text-center text-brand text-[11px] font-inter hover:opacity-75 transition-colors">
         View all messages
       </button>
     </div>

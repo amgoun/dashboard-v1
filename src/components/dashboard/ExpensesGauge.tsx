@@ -58,7 +58,7 @@ const ExpensesGauge: React.FC = () => (
       {/* Centre label at the flat bottom edge of the arc */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 text-center">
         <p className="text-white text-[28px] font-semibold font-inter leading-tight">$5476</p>
-        <p className="text-[#a1a1a1] text-[10px] font-normal font-inter mt-0.5">Spending This Week</p>
+        <p className="text-ink-secondary text-[10px] font-normal font-inter mt-0.5">Spending This Week</p>
       </div>
     </div>
 
@@ -67,7 +67,7 @@ const ExpensesGauge: React.FC = () => (
       {segments.map((seg) => (
         <div key={seg.name} className="flex items-center gap-1.5">
           <div className="w-2.5 h-2.5 rounded-sm" style={{ backgroundColor: seg.color }} />
-          <span className="text-[#a1a1a1] text-[10px] font-normal font-inter">{seg.name}</span>
+          <span className="text-ink-secondary text-[10px] font-normal font-inter">{seg.name}</span>
         </div>
       ))}
     </div>

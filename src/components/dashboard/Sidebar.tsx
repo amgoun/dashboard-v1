@@ -8,7 +8,7 @@ interface SidebarProps {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ onClose, activePage, onNavigate }) => (
-  <aside className="w-[230px] h-screen sticky top-0 bg-[#1b1b1b] flex flex-col py-8 px-0 shrink-0 overflow-y-auto">
+  <aside className="w-[230px] h-screen sticky top-0 bg-surface-card flex flex-col py-8 px-0 shrink-0 overflow-y-auto">
     {/* Logo */}
     <div className="flex items-center gap-2 px-8 mb-10">
       <img
@@ -24,7 +24,7 @@ const Sidebar: React.FC<SidebarProps> = ({ onClose, activePage, onNavigate }) =>
       {onClose && (
         <button
           onClick={onClose}
-          className="ml-auto text-[#a1a1a1] hover:text-white text-xl leading-none lg:hidden"
+          className="ml-auto text-ink-secondary hover:text-white text-xl leading-none lg:hidden"
           aria-label="Close menu"
         >
           ✕
@@ -39,12 +39,12 @@ const Sidebar: React.FC<SidebarProps> = ({ onClose, activePage, onNavigate }) =>
         return (
           <div key={item.label} className="relative">
             {isActive && (
-              <div className="absolute left-[-16px] top-1/2 -translate-y-1/2 w-1 h-6 bg-[#28a263] rounded-r-full" />
+              <div className="absolute left-[-16px] top-1/2 -translate-y-1/2 w-1 h-6 bg-brand rounded-r-full" />
             )}
             <button
               onClick={() => { onNavigate(item.label); if (onClose) onClose(); }}
               className={`flex items-center gap-3 w-full px-4 py-2.5 rounded-lg text-sm font-normal font-inter transition-colors ${
-                isActive ? "text-[#28a263] font-semibold bg-[#28a263]/10" : "text-[#a1a1a1] hover:text-white hover:bg-white/[0.03]"
+                isActive ? "text-brand font-semibold bg-brand/10" : "text-ink-secondary hover:text-white hover:bg-white/[0.03]"
               }`}
             >
               <span className="relative flex items-center">
@@ -60,7 +60,7 @@ const Sidebar: React.FC<SidebarProps> = ({ onClose, activePage, onNavigate }) =>
                   }}
                 />
                 {item.badge && (
-                  <span className="absolute -top-1 -right-1 w-[5.5px] h-[5.5px] bg-[#ff4e3c] rounded-full" />
+                  <span className="absolute -top-1 -right-1 w-[5.5px] h-[5.5px] bg-danger rounded-full" />
                 )}
               </span>
               {item.label}
@@ -79,11 +79,11 @@ const Sidebar: React.FC<SidebarProps> = ({ onClose, activePage, onNavigate }) =>
           className="w-9 h-9 rounded-lg object-cover"
         />
         <div>
-          <p className="text-[#a1a1a1] text-[12.8px] font-normal font-inter leading-tight">Jenny Wilson</p>
+          <p className="text-ink-secondary text-[12.8px] font-normal font-inter leading-tight">Jenny Wilson</p>
           <p className="text-white text-[9.6px] font-normal font-inter">Itaibrahca31@gmail.com</p>
         </div>
       </div>
-      <button className="flex items-center gap-3 px-4 py-2 mt-2 text-[#a1a1a1] text-[12.8px] font-normal font-inter hover:text-white transition-colors">
+      <button className="flex items-center gap-3 px-4 py-2 mt-2 text-ink-secondary text-[12.8px] font-normal font-inter hover:text-white transition-colors">
         <img
           src="https://storage.googleapis.com/tempo-image-previews/figma-exports%2Fuser_35fimNlXhOium67GLLJVWNU4rKV-1776729519656-node-3%3A877-1776729518188.png"
           alt="logout"
