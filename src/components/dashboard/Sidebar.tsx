@@ -33,11 +33,10 @@ const Sidebar: React.FC<SidebarProps> = ({ onClose, activePage, onNavigate }) =>
       )}
     </div>
 
-    {/* Scrollable nav + profile */}
+    {/* Scrollable nav */}
     <ScrollArea.Root className="flex-1 min-h-0 overflow-hidden">
       <ScrollArea.Viewport className="h-full w-full">
-        {/* Navigation */}
-        <nav className="flex flex-col gap-1 px-4">
+        <nav className="flex flex-col gap-1 px-4 pb-4">
           {navItems.map((item) => {
             const isActive = activePage === item.label;
             return (
@@ -75,29 +74,6 @@ const Sidebar: React.FC<SidebarProps> = ({ onClose, activePage, onNavigate }) =>
             );
           })}
         </nav>
-
-        {/* User Profile */}
-        <div className="px-4 mt-4 pb-8">
-          <div className="flex items-center gap-3 px-4 py-2">
-            <img
-              src="https://storage.googleapis.com/tempo-image-previews/figma-exports%2Fuser_35fimNlXhOium67GLLJVWNU4rKV-1776729518709-node-3%3A831-1776729517136.png"
-              alt="Jenny Wilson avatar"
-              className="w-9 h-9 rounded-lg object-cover"
-            />
-            <div>
-              <p className="text-ink-secondary text-[12.8px] font-normal font-inter leading-tight">Jenny Wilson</p>
-              <p className="text-white text-[9.6px] font-normal font-inter">Itaibrahca31@gmail.com</p>
-            </div>
-          </div>
-          <button className="flex items-center gap-3 px-4 py-2 mt-2 text-ink-secondary text-[12.8px] font-normal font-inter hover:text-white transition-colors">
-            <img
-              src="https://storage.googleapis.com/tempo-image-previews/figma-exports%2Fuser_35fimNlXhOium67GLLJVWNU4rKV-1776729519656-node-3%3A877-1776729518188.png"
-              alt="logout"
-              className="w-4 h-4 object-contain"
-            />
-            Logout
-          </button>
-        </div>
       </ScrollArea.Viewport>
 
       {/* Custom scrollbar */}
@@ -109,6 +85,29 @@ const Sidebar: React.FC<SidebarProps> = ({ onClose, activePage, onNavigate }) =>
         <ScrollArea.Thumb className="relative flex-1 rounded-full bg-brand/40 hover:bg-brand/70 transition-colors before:absolute before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:w-full before:min-w-[20px] before:h-full before:min-h-[20px]" />
       </ScrollArea.Scrollbar>
     </ScrollArea.Root>
+
+    {/* User Profile — pinned to bottom */}
+    <div className="px-4 pb-6 shrink-0">
+      <div className="flex items-center gap-3 px-4 py-2">
+        <img
+          src="https://storage.googleapis.com/tempo-image-previews/figma-exports%2Fuser_35fimNlXhOium67GLLJVWNU4rKV-1776729518709-node-3%3A831-1776729517136.png"
+          alt="Jenny Wilson avatar"
+          className="w-9 h-9 rounded-lg object-cover"
+        />
+        <div>
+          <p className="text-ink-secondary text-[12.8px] font-normal font-inter leading-tight">Jenny Wilson</p>
+          <p className="text-white text-[9.6px] font-normal font-inter">Itaibrahca31@gmail.com</p>
+        </div>
+      </div>
+      <button className="flex items-center gap-3 px-4 py-2 mt-2 text-ink-secondary text-[12.8px] font-normal font-inter hover:text-white transition-colors">
+        <img
+          src="https://storage.googleapis.com/tempo-image-previews/figma-exports%2Fuser_35fimNlXhOium67GLLJVWNU4rKV-1776729519656-node-3%3A877-1776729518188.png"
+          alt="logout"
+          className="w-4 h-4 object-contain"
+        />
+        Logout
+      </button>
+    </div>
   </aside>
 );
 
